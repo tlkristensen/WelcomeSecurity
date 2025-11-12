@@ -2,12 +2,14 @@
 ---
 
 // Colors
-$primary: #e5261f;
-$primary-dark: #a01b16;
-$secondary: #f88379;
+$ws-green: #16a085; // Updated to more professional teal-green  
+$ws-gray: #575756;
+$primary: $ws-green;
+$primary-dark: #1e3a8a; // Security blue for dark variant
+$secondary: $ws-gray;
 $black: #2f2f41;
 $white: #ffffff;
-$white-offset: #fff6f8;
+$white-offset: lighten($ws-gray, 20%);
 $steel: #5c5a5a;
 
 // Links
@@ -22,9 +24,9 @@ $font-family-heading: "Playfair Display", serif, -apple-system;
 
 // Footer
 $footer-background-color: $primary;
-$footer-text-color: $white;
+$footer-text-color: $ws-gray;
 $sub-footer-background-color: darken($primary, 10%);
-$sub-footer-text-color: $white;
+$sub-footer-text-color: darken($ws-gray,10%);
 
 // Bootstrap 5.3.2
 
@@ -106,6 +108,9 @@ $sub-footer-text-color: $white;
 @import "pages/page-home";
 @import "pages/page-teams";
 @import "pages/page-service";
+
+// WelcomeSecurity Custom Styles - Keep at end to override template styles
+@import "components/welcomesecurity-custom";
 
 body {
   font-size: 16px;

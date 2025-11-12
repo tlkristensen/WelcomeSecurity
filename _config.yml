@@ -1,6 +1,9 @@
 baseurl: '/'
 permalink: pretty
-title: 'Jekyll Serif'
+title: 'WelcomeSecurity - Your Security Sidekick'
+description: 'WelcomeSecurity hjælper virksomheder med at sikre sig mod IT-kriminalitet gennem professionel rådgivning og sikkerhedsløsninger.'
+author: 'WelcomeSecurity'
+keywords: 'IT-sikkerhed, cybersikkerhed, IT-rådgivning, sikkerhedsaudit, backup, IT-kriminalitet'
 
 logo:
   mobile: "images/logo/logo-mobile.svg"
@@ -37,6 +40,17 @@ sass:
 
 plugins:
   - jekyll-environment-variables
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Security settings
+safe: true
+highlighter: rouge
+markdown: kramdown
+
+# SEO settings
+url: "https://welcomesecurity.net" # Update when deployed
+lang: da-DK
 
 exclude:
   - Gemfile

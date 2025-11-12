@@ -1,22 +1,137 @@
 # NPM
-node_modules
-npm-debug.log
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
 
 # Jekyll
-_site
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+.jekyll-env
 Gemfile.lock
 **/Gemfile.lock
 
-# Temporary files
-tmp
+# Ruby
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+.rspec
+.rvmrc
+
+# NPM
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Security & Configuration
+*.key
+*.pem
+*.crt
+*.p12
+config/secrets.yml
+config/master.key
+/config/credentials/*
+.secret
+secrets.yml
+*.backup
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vim
+.netrwhist
+
+# OS Files
 .DS_Store
+.DS_Store?
 Desktop.ini
 ._*
 Thumbs.db
 .Spotlight-V100
 .Trashes
-.idea
+ehthumbs.db
+
+# Logs
+*.log
+logs/
+log/
+
+# Temporary Files
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Backup Files
+*.bak
+*.backup
+*~
+*.orig
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Build Output
+dist/
+build/
+out/
+
+# Security Testing Files
+*.pen
+*.pentest
+security-scan-results/
+vulnerability-reports/
+
+# Draft Content (for development)
+_drafts/
+drafts/
+
+# Analytics & Tracking (if files are generated)
+analytics/
+tracking/
+
+# Image Optimization Cache
+.cache/
+.optimize-images/
+
+# Netlify
+.netlify/
+
+# OS Files
+.DS_Store
+.DS_Store?
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes
+ehthumbs.db
