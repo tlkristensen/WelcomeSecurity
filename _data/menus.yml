@@ -1,27 +1,28 @@
 main:
-  - name: "Services"
+  - name: "Vi tilbyder"
     url: "/services/"
     weight: 2
-  - name: "Om os"
-    url: "/about/"
+  - name: "Vores superhelte"
+    url: "/superhelt/"
     weight: 3
-  - name: "Team"
+  - name: "Holdet"
     url: "/team/"
     weight: 4
-  - name: "Kontakt"
-    url: "/contact/"
+  - name: "Os"
+    url: "/about/"
     weight: 5
 
 footer:
-  - name: "Hjem"
-    url: "/"
-    weight: 1
-  - name: "Services"
+  - name: "Vi tilbyder"
     url: "/services/"
     weight: 2
-  - name: "Om os"
-    url: "/about/"
+  - name: "Vores superhelte"
+    url: "/references/"
     weight: 3
-  - name: "Kontakt"
-    url: "/contact/"
+  - name: "Holdet"
+    url: "/team/"
     weight: 4
+  - name: "Os"
+    url: "/about/"
+    weight: 5
+    

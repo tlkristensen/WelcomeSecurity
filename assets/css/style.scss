@@ -2,7 +2,7 @@
 ---
 
 // Colors
-$ws-green: #16a085; // Updated to more professional teal-green  
+$ws-green: #65b22e;
 $ws-gray: #575756;
 $primary: $ws-green;
 $primary-dark: #1e3a8a; // Security blue for dark variant
@@ -18,9 +18,9 @@ $link-decoration: none;
 $link-hover-color: lighten($primary, 10%);
 $link-hover-decoration: underline;
 
-// Fonts
-$font-family-base: Helvetica, Arial, sans-serif, -apple-system;
-$font-family-heading: "Playfair Display", serif, -apple-system;
+// Fonts - Professional system font stack that works everywhere
+$font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
 // Footer
 $footer-background-color: $primary;

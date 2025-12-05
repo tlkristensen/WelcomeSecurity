@@ -1,7 +1,4 @@
-Contact: mailto:security@welcomesecurity.net
 Contact: mailto:info@welcomesecurity.net
-Expires: 2026-01-01T00:00:00.000Z
-Encryption: https://welcomesecurity.net/pgp-key.asc
 Preferred-Languages: da, en
 Canonical: https://welcomesecurity.net/.well-known/security.txt
 
@@ -12,7 +9,7 @@ and welcome responsible disclosure of vulnerabilities.
 
 ## Reporting Guidelines
 
-1. Email security reports to security@welcomesecurity.net
+1. Email security reports to info@welcomesecurity.net
 2. Include detailed information about the vulnerability
 3. Allow reasonable time for us to respond and fix issues
 4. Do not access or modify user data

@@ -1,15 +1,5 @@
 [
   {
-    "name": "Facebook",
-    "link": "https://www.facebook.com/WelcomeSecurity-992825457477583/",
-    "image": "images/social/facebook.svg"
-  },
-  {
-    "name": "Twitter",
-    "link": "https://twitter.com/WelcomeSecurity",
-    "image": "images/social/twitter.svg"
-  },
-  {
     "name": "Email",
     "link": "mailto:info@welcomesecurity.net",
     "image": "images/social/email.svg"

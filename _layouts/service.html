@@ -3,6 +3,21 @@ layout: default
 bodyClass: "page-service"
 ---
 
+{% if page.banner_image %}
+<div class="service-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <img alt="{{ page.title }}" class="banner-image" src="{{ page.banner_image | relative_url }}" />
+        {% if page.banner_caption %}
+        <p class="banner-caption">{{ page.banner_caption }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <div class="container pb-6 pt-6 pt-md-10 pb-md-10">
   <div class="row justify-content-start">
     <div class="col-12 col-md-8">

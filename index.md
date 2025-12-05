@@ -1,21 +1,27 @@
 ---
-title: Din IT Sikkerhedspartner
+title: WelcomeSecurity - Security Sidekick
 layout: home
-description: WelcomeSecurity hjælper virksomheder med at beskytte sig mod IT-kriminalitet gennem professionel rådgivning og sikkerhedsløsninger.
-intro_image: "images/illustrations/security.svg"
-intro_image_absolute: true
+description: "WelcomeSecurity hjælper udviklere, DevOps-teams og Security Champions med at bygge sikker og robust software hurtigere – uden at sikkerhed bliver en stopklods."
+intro_image: "images/thomas-speaking.webp"
+intro_image_absolute: false
 intro_image_hide_on_mobile: true
-show_call_box: true
+show_call_box: false
+header: Dine udviklere er superhelte - de fortjener en sidekick
 ---
 
-# IT-angreb kan ramme os alle
+Dine udviklere er superheltene. De bygger de løsninger, som dine kunder og samfundet er afhængige af hver eneste dag.  
 
-Næsten dagligt hører vi om nye problemer og udfordringer med IT-sikkerhed i nyhedsmedierne. Det kan derfor ikke overraske, at vi bliver nød til at tage risikoen for at blive ramt af IT-angreb alvorligt.
+Men kompleksitet, tidspres og krav om sikkerhed gør deres hverdag sværere – ikke nemmere.
 
-Vi bør alle sikre vores virksomheder, vores kunder, vores forbrugere – og vores kollegaer optimalt. Det skal vi alle gøre bedre – og det **KAN** vi gøre bedre!
+WelcomeSecurity er jeres **Security Sidekick**: vi hjælper udviklere, DevOps-teams og Security Champions med at bygge **sikker og robust software** – uden at miste fart.
 
-## Har du sikret din virksomhed mod IT-kriminelle?
+Kan du genkende dette:
 
-Langt de fleste virksomheder har en hjemmeside, en nyhedsmail, en webshop eller en blog. Det betyder, at vi alle potentielt kan blive udsat for IT-kriminalitet. 
+**I vil gerne løfte sikkerhedsniveauet**, men ved ikke hvor I skal starte  
+**I er trætte af generiske konsulentrapporter** uden konkret effekt  
+**I vil bygge Security Champions op** i teamet  
+**I vil have sikkerhed**, der hjælper jer – ikke bremser jer  
 
-IT-sikkerhed handler om din forretning og om, hvorvidt dine produkter, eller services har en høj grad af sikkerhed. IT-sikkerhedsløsningen skal leve op til din og dine kunders forventninger. IT-sikkerhed skal skabe værdi for både dig – og dine kunder.
+**[Så tager jeg gerne en uforpligtende snak](/contact/){: .button .button-primary}**
+
+Se hvordan vi kan hjælpe jeres superhelte nedenfor eller spring direkte hvordan vi har hjulpet andre [superhelte](/references/)

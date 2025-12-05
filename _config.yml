@@ -1,9 +1,16 @@
 baseurl: '/'
 permalink: pretty
-title: 'WelcomeSecurity - Your Security Sidekick'
-description: 'WelcomeSecurity hjælper virksomheder med at sikre sig mod IT-kriminalitet gennem professionel rådgivning og sikkerhedsløsninger.'
+title: 'WelcomeSecurity - Security Sidekick til dine udviklere'
+description: >
+  WelcomeSecurity hjælper udviklere, DevOps-teams og Security Champions med at bygge
+  sikker og robust software hurtigere. Vi er jeres Security Sidekick - med secure coding,
+  bedre udviklingsprocesser, threat modeling og praktisk sikkerhedssparring tæt på hverdagen.
 author: 'WelcomeSecurity'
-keywords: 'IT-sikkerhed, cybersikkerhed, IT-rådgivning, sikkerhedsaudit, backup, IT-kriminalitet'
+keywords: >
+  Security Sidekick, Security Champions, secure software development, sikker softwareudvikling,
+  application security, applikationssikkerhed, secure coding, secure SDLC, DevSecOps,
+  developer enablement, softwarekvalitet, sikkerhedscoaching, secure code review,
+  trusselsmodellering, sikkerhedsarkitektur, risikostyring, Silkeborg, Jylland, Danmark
 
 logo:
   mobile: "images/logo/logo-mobile.svg"

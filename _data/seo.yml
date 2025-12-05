@@ -1,6 +1,15 @@
 google_analytics_id: ""  
-meta_twitter_site: "@WelcomeSecurity"
-meta_twitter_creator: "@WelcomeSecurity"
-copyright_text: 'Copyright © 2018 WelcomeSecurity, CVR DK36622652, info@welcomesecurity.net. All rights reserved.'
-meta_description: 'WelcomeSecurity hjælper virksomheder med at sikre sig mod IT-kriminalitet gennem professionel rådgivning og sikkerhedsløsninger.'
-meta_keywords: 'IT-sikkerhed, cybersikkerhed, IT-rådgivning, sikkerhedsaudit, backup, IT-kriminalitet, Danmark'
+
+copyright_text: "Copyright © 2025 WelcomeSecurity, CVR DK36622652, info@welcomesecurity.net. All rights reserved."
+
+meta_description: >
+  WelcomeSecurity er din Security Sidekick. Vi hjælper udviklere, DevOps-teams og
+  Security Champions med at bygge sikker og robust software hurtigere - gennem secure
+  coding, praktisk sparring, bedre udviklingsprocesser og sikkerhed tæt på hverdagen.
+
+meta_keywords: >
+  Security Sidekick, Security Champions, secure software development, sikker softwareudvikling,
+  application security, applikationssikkerhed, secure coding, secure SDLC, DevSecOps,
+  developer enablement, sikkerhedscoaching, udviklertræning, sikkerhedsarkitektur,
+  trusselsmodellering, secure design, secure code review, DevOps sikkerhed,
+  softwarekvalitet, risikostyring, Silkeborg, Jylland, Danmark

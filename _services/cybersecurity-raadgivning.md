@@ -1,7 +1,7 @@
 ---
 title: "Cybersecurity Rådgivning"
 date: 2025-11-12T12:33:46+10:00
-weight: 4
+weight: 6
 ---
 
 Strategisk cybersecurity rådgivning der hjælper din virksomhed med at navigere i det komplekse sikkerhedslandskab.

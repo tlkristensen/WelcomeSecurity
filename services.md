@@ -1,12 +1,20 @@
 ---
-title: Services
+title: Sådan hjælper vi jer
 layout: services
-description: Services
-intro_image: "images/illustrations/reading.svg"
-intro_image_absolute: true
-intro_image_hide_on_mobile: true
+description: WelcomeSecurity tilbyder praktisk it-sikkerhed, der hjælper udviklere med at bygge sikker software uden at bremse tempoet
+intro_image: "images/illustrations/Racecar.webp"
+intro_image_absolute: false
+intro_image_hide_on_mobile: false
+intro_image_caption: "Høj hastighed kræver stærke bremser – og stærk sikkerhed"
+header: It-sikkerhed der hjælper – ikke bremser
 ---
 
-# Services that grow with your business
+Udviklere skal levere hurtigere, sikkerhed skal være bedre, og der er aldrig nok tid eller ressourcer, så der hyres eksterne konsulenter ind, som kritiserer jeres løsning, jeres processer og jeres udviklere, men reelt leverer det ikke andet end rapporter, som I ikke kan forstå.
 
-Aliquam erat volutpat. Morbi nisl tortor, dignissim eget efficitur vel, auctor non felis. Fusce quis viverra mi. Aenean quis massa pretium, ullamcorper nisi eget, hendrerit odio.
+WelcomeSecurity arbejder anderledes. Vi hjælper **udviklere, DevOps-teams og Security Champions** med at bygge sikker software som en naturlig del af arbejdet – ikke som en barriere.
+
+Vores tilgang er praktisk, udviklernær og hands-on. Vi vil ikke skrive rapporter, I aldrig får læst. Vi vil arbejde side om side med jeres teams og skabe konkrete resultater.
+
+Om I har brug for en fast sparringspartner, sikkerhedsundervisning eller hjælp til at bygge en bedre sikkerhedskultur – vi skræddersyer løsningen til jeres behov.
+
+Men I kan evt. finde inspiration her:

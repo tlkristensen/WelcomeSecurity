@@ -1,10 +1,12 @@
 [
   {
     "title": "Enhver superhelt har brug for en sidekick",
-    "description": "New clients receive an obligation free consultation.",
+    "description": "Verden bliver mere komplekst, software bliver mere komplekst. Vores sikkerhed afhænger af andres beslutning. En triviel fejl begået af en enkel udvikler lige før årsskiftet have seriøse konsekvenser for resten af verden. En udvikler, som du aldrig har hørt om, fjernede 11 liners kode og det gav problemer for selv Facebook, Netflix og Spotify. 
+Skal vi fortsætte? Hvorfor fortsætter vi? 
+Det paradoksale er, at vi ved, hvordan vi sikrer vores software. Faktisk er alle dine it-sikkerhedsmæssige udfordringer allerede løst og svaret tilgængelig på internettet!",
     "image": {
       "url": "images/features/noun_branding_1885335.svg",
-      "width": 80,
+      "width": 80,  
       "height": 80
     }
   },
