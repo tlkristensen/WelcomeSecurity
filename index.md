@@ -9,7 +9,7 @@ show_call_box: false
 header: Dine udviklere er superhelte - de fortjener en sidekick
 ---
 
-Dine udviklere er superheltene. De bygger de løsninger, som dine kunder og samfundet er afhængige af hver eneste dag.  
+Dine udviklere er superheltene. De bygger de løsninger, som dine kunder, medarbejdere, din virksomhed og samfundet er afhængige af hver eneste dag.  
 
 Men kompleksitet, tidspres og krav om sikkerhed gør deres hverdag sværere – ikke nemmere.
 
@@ -24,4 +24,6 @@ Kan du genkende dette:
 
 **[Så tager jeg gerne en uforpligtende snak](/contact/){: .button .button-primary}**
 
-Se hvordan vi kan hjælpe jeres superhelte nedenfor eller spring direkte hvordan vi har hjulpet andre [superhelte](/references/)
+Se hvordan vi kan støtte jeres superhelte nedenfor eller spring direkte til [superhelte vi allerede har hjulpet](/superhelte/) 
+
+Andre kalder det referencer. Vi kalder det samarbejder.

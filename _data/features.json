@@ -1,29 +1,27 @@
 [
   {
     "title": "Enhver superhelt har brug for en sidekick",
-    "description": "Verden bliver mere komplekst, software bliver mere komplekst. Vores sikkerhed afhænger af andres beslutning. En triviel fejl begået af en enkel udvikler lige før årsskiftet have seriøse konsekvenser for resten af verden. En udvikler, som du aldrig har hørt om, fjernede 11 liners kode og det gav problemer for selv Facebook, Netflix og Spotify. 
-Skal vi fortsætte? Hvorfor fortsætter vi? 
-Det paradoksale er, at vi ved, hvordan vi sikrer vores software. Faktisk er alle dine it-sikkerhedsmæssige udfordringer allerede løst og svaret tilgængelig på internettet!",
+    "description": "Udviklerne bygger de løsninger, som kunder og samfund er afhængige af. Vores rolle er at støtte dem med sikkerhed, overblik og sparring – uden at tage kontrollen eller tempoet fra dem.",
     "image": {
-      "url": "images/features/noun_branding_1885335.svg",
-      "width": 80,  
-      "height": 80
-    }
-  },
-  {
-    "title": "Værdiskabende it-ydelser",
-    "description": "All members of our team are certified accountants.",
-    "image": {
-      "url": "images/features/noun_The Process_1885341.svg",
+      "url": "images/features/icon-sidekick.svg",
       "width": 80,
       "height": 80
     }
   },
   {
-    "title": "Tax Compliance",
-    "description": "We stay up to date on the latest changes to the tax code.",
+    "title": "Sikkerhed skal skabe værdi – ikke støj",
+    "description": "Vi arbejder kun med sikkerhed, der gør software bedre, mere robust og nemmere at vedligeholde. Ingen sort-boks-løsninger, ingen støj – kun det, der giver reel værdi for udviklere og forretning.",
     "image": {
-      "url": "images/features/noun_3d modeling_1885342.svg",
+      "url": "images/features/icon-value-security.svg",
+      "width": 80,
+      "height": 80
+    }
+  },
+  {
+    "title": "Mennesker og kultur før værktøjer",
+    "description": "De fleste sikkerhedsproblemer handler ikke om teknologi, men om beslutninger, forståelse og samarbejde. Vi hjælper med at opbygge kompetencer, Security Champions og en kultur, der virker i praksis.",
+    "image": {
+      "url": "images/features/icon-culture.svg",
       "width": 80,
       "height": 80
     }

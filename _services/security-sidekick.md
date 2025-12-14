@@ -2,13 +2,12 @@
 title: "Security Sidekick"
 weight: 1
 description: "Få en fast Security Sidekick, der arbejder tæt sammen med jeres udviklere og Security Champions og hjælper jer med at bygge sikker software hurtigt og effektivt."
-intro_image: "images/illustrations/superhero.webp"
 intro_image_absolute: false
 intro_image_hide_on_mobile: false
-intro_image_caption: "Alle helte har brug for en sidekick"
+banner_image: "/images/illustrations/superhelt.webp"
 ---
 
-Udviklerne er superheltene i jeres organisation.  De bygger de løsninger, som jeres kunder og samfundet er afhængige af hver eneste dag.  
+Udviklerne er superheltene i jeres organisation.  De bygger de løsninger, som dine kunder, medarbejdere, din virksomhed og samfundet er afhængige af hver eneste dag.
 
 Men komplekse teknologier, sårbarheder, frameworks, deadlines og kundekrav gør det svært at holde styr på sikkerheden – samtidig med at tempoet skal opretholdes.
 
@@ -37,7 +36,7 @@ Målet er at gøre sikkerhed til en **naturlig og let del af udviklingsarbejdet*
 
 ## Eksempler på opgaver jeres Security Sidekick kan hjælpe med
 
-- review af kode og pull requests  
+- støtte til effektivt tilpasning af løsning til IEC62443, GDPR, ISO 27001 etc.
 - sparring om secure coding patterns  
 - vurdering af teknisk risiko  
 - threat modeling på nye features eller services  
@@ -47,6 +46,7 @@ Målet er at gøre sikkerhed til en **naturlig og let del af udviklingsarbejdet*
 - sparring omkring tooling og processer  
 - onboarding af nye udviklere i sikker praksis  
 
+og meget andet!
 ---
 
 ## Klar til en Security Sidekick?

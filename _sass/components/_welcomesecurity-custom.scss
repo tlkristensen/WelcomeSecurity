@@ -138,187 +138,6 @@ body {
   }
 }
 
-// Security-themed component styles
-.security-hero {
-  background: linear-gradient(135deg, $ws-security-blue 0%, $ws-trust-blue 100%);
-  color: white;
-  
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../images/security/pattern-overlay.svg');
-    opacity: 0.1;
-    z-index: 1;
-  }
-}
-
-// Service cards with security styling
-.service-card {
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-  
-  &:hover {
-    border-color: $ws-primary;
-    box-shadow: 0 4px 20px rgba($ws-primary, 0.15);
-    transform: translateY(-2px);
-  }
-  
-  .service-icon {
-    color: $ws-primary;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-}
-
-// Trust indicators
-.trust-indicator {
-  background: $ws-light-gray;
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
-  
-  .trust-icon {
-    color: $ws-success-green;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .trust-text {
-    color: $ws-neutral-gray;
-    font-size: 0.9rem;
-  }
-}
-
-// Security badges and credentials
-.security-badge {
-  display: inline-block;
-  background: $ws-primary;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  margin: 0.25rem;
-}
-
-// CTA buttons with security theme
-.cta-security {
-  background: linear-gradient(45deg, $ws-primary, $ws-trust-blue);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba($ws-primary, 0.3);
-    color: white;
-  }
-}
-
-// Emergency contact styling
-.emergency-contact {
-  background: $ws-danger-red;
-  color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  margin: 2rem 0;
-  
-  .emergency-title {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .emergency-number {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-}
-
-// Security expertise areas
-.expertise-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 2rem 0;
-  
-  .expertise-item {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-    
-    .expertise-icon {
-      color: $ws-primary;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    
-    .expertise-title {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    
-    .expertise-description {
-      color: $ws-neutral-gray;
-      font-size: 0.9rem;
-    }
-  }
-}
-
-// Responsive design for security components
-@media (max-width: 768px) {
-  .security-hero {
-    padding: 3rem 0;
-  }
-  
-  .expertise-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cta-security {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-// Danish language specific styles
-.lang-da {
-  // Ensure proper line-height for Danish text
-  line-height: 1.6;
-  
-  // Better spacing for Danish characters
-  letter-spacing: 0.01em;
-}
-
-// Print styles for security reports
-@media print {
-  .security-hero,
-  .cta-security {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .trust-indicator {
-    background: white;
-    border: 1px solid #ccc;
-  }
-}
-
 // Custom intro section styling
 .intro {
   padding-top: 20px !important;
@@ -331,6 +150,7 @@ body {
   
   // Smaller font sizes for intro content
   h1 {
+    width: 100% !important;
     font-size: 2rem !important;
     
     @include media-breakpoint-up(md) {
@@ -342,27 +162,11 @@ body {
     }
   }
     
-  p {
+p {
     font-size: 1.05rem !important;
     
     @include media-breakpoint-up(md) {
       font-size: 1.1rem !important;
-    }
-  }
-}
-
-// Make service page h1 consistent with other h1s
-.service-single {
-  h1.title {
-    font-size: 2rem !important;
-    font-weight: bold !important;
-    
-    @include media-breakpoint-up(md) {
-      font-size: 2.25rem !important;
-    }
-    
-    @include media-breakpoint-up(lg) {
-      font-size: 2.5rem !important;
     }
   }
 }
@@ -416,6 +220,40 @@ img {
   }
 }
 
+// Service banner hero with caption overlay
+.service-banner-hero {
+  width: 100%;
+  margin-bottom: 2rem;
+  
+  .banner-image-container {
+    position: relative;
+    width: 100%;
+    max-height: 60vh;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .banner-hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .banner-caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    color: white;
+    padding: 1.5rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
 // Specific styling for h2 inside intro (like services page)
 .intro {
   h2 {
@@ -430,17 +268,12 @@ img {
       font-size: 2.25rem !important;
     }
   }
-}
 
-// Global font size adjustments
-body {
-  font-size: 0.95rem !important;
-}
-
-// Reduce service card text
-.service-summary {
+  // Increase paragraph width on desktop
   p {
-    font-size: 0.9rem !important;
+    @include media-breakpoint-up(md) {
+      width: 90% !important;
+    }
   }
 }
 

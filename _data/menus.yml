@@ -17,7 +17,7 @@ footer:
     url: "/services/"
     weight: 2
   - name: "Vores superhelte"
-    url: "/references/"
+    url: "/superhelte/"
     weight: 3
   - name: "Holdet"
     url: "/team/"
@@ -25,4 +25,7 @@ footer:
   - name: "Os"
     url: "/about/"
     weight: 5
+  - name: "Rettigheder og privatliv"
+    url: "/privacy/"
+    weight: 6
     
