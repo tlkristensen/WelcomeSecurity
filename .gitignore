@@ -8,6 +8,10 @@ yarn.lock
 
 # Jekyll
 _site/
+.jekyll-cache/
+.jekyll-metadata
+.jekyll-env
+output/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata

@@ -1,6 +1,6 @@
 [build]
   command = "jekyll build"
-  publish = "_site"
+  publish = "output"
 
 [build.environment]
   JEKYLL_ENV = "production"

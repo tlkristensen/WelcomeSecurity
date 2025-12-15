@@ -1,56 +1,58 @@
 ---
-title: Om WelcomeSecurity
+title: WelcomeSecurity og Sustira
 layout: page
-description: Lær mere om WelcomeSecurity og vores mission om at hjælpe danske virksomheder med IT-sikkerhed
+description: "Om WelcomeSecurity – vores mission, principper og ansvar som virksomhed på tværs af sikkerhed og bæredygtighed."
 bodyClass: page-about
 ---
 
-WelcomeSecurity er et dansk IT-sikkerhedsspecialister, der hjælper virksomheder med at beskytte sig mod den stigende trussel fra IT-kriminalitet.
+WelcomeSecurity er en dansk rådgivningsvirksomhed, der arbejder med ansvarlig teknologi, sikker software og bæredygtig forretningsudvikling.
 
-![IT Security Services](/images/team/security-team.jpg)
+Virksomheden omfatter både **WelcomeSecurity** (it- og softwaresikkerhed) og **Sustira** (ESG og bæredygtighed).  
 
-# Vores Mission
+Fagområderne er forskellige – missionen, værdierne og principperne er de samme.
 
-Vi arbejder for at gøre IT-sikkerhed tilgængeligt og forståeligt for alle danske virksomheder - uanset størrelse. Vi tror på, at god IT-sikkerhed ikke skal være kompliceret eller uoverkommeligt dyrt.
+Vi arbejder tæt sammen med vores kunder, fordi de bedste løsninger skabes i fællesskab og tæt på hverdagen – og fordi det er sådan, vi bedst hjælper vores kunder med at skabe værdi.
 
-## Vores Tilgang
-
-IT-sikkerhed handler ikke kun om teknologi - det handler om din forretning. Vores tilgang fokuserer på:
-
-1. **Forretningsforståelse**: Vi forstår dine specifikke udfordringer
-2. **Praktiske løsninger**: Løsninger der fungerer i den virkelige verden
-3. **Løbende support**: IT-sikkerhed er ikke en engangsting
-
-> IT-sikkerhed skal skabe værdi for både dig og dine kunder
-
-## Vores Værdier
-
-### Tilgængelighed
-Vi gør kompleks IT-sikkerhed forståelig og implementerbar for alle virksomheder.
-
-### Troværdighed  
-Vi bygger langvarige partnerskaber baseret på tillid og gennemsigtighed.
-
-### Ekspertise
-Vi holder os opdaterede med de seneste trusler og sikkerhedsløsninger.
-
-### Praktisk fokus
-Vi leverer løsninger der fungerer i praksis - ikke kun på papiret.
-
-## Hvorfor WelcomeSecurity?
-
-- **Dansk virksomhed**: Vi forstår danske virksomheders behov og udfordringer
-- **Personlig service**: Du får en fast kontaktperson, ikke et callcenter
-- **Helhedsorienteret**: Vi ser på hele din IT-infrastruktur, ikke kun enkelte dele
-- **Dokumenteret erfaring**: Vi har hjulpet mange virksomheder med at styrke deres IT-sikkerhed
+Samtidig tror vi på, at ansvarlige beslutninger er en forudsætning for et bedre samfund – både nu og i fremtiden for os alle.
 
 ---
 
-## Kontakt os i dag
+## Vores mission
 
-Er du klar til at styrke din virksomheds IT-sikkerhed? Kontakt os for en uforpligtende samtale om dine behov og muligheder.
+Vi arbejder for at:
 
-**Telefon**: +45 2158 1410  
-**Email**: info@welcomesecurity.net
+- spille vores kunder gode, så deres løsninger og beslutninger bidrager positivt til samfundet  
+- beskytte mennesker, samfund og fælles værdier  
+- understøtte ansvarlige beslutninger – også når de er svære  
+- bidrage til et bedre og mere ansvarligt samfund, både nu og på lang sigt  
 
-Vi ser frem til at høre fra dig!
+Det betyder også, at vi bevidst fravælger samarbejde, der kan bidrage til uansvarlig adfærd, skade på mennesker, samfund eller fælles værdier.
+
+---
+
+## Vores principper
+
+Vi driver vores forretning med høj etisk standard og respekt for grundlæggende menneskerettigheder.
+
+Vi accepterer og tolererer ikke:
+
+- korruption, bestikkelse eller afpresning  
+- børnearbejde, tvangsarbejde, diskrimination, chikane eller nedværdigende adfærd  
+
+Vi bestræber os på at træffe ansvarlige beslutninger – både på lang sigt og i hverdagen.
+
+---
+
+## Ansvarlighed i praksis
+
+Ansvarlighed er ikke et særskilt initiativ – det er en del af vores daglige arbejde.
+
+Vi arbejder aktivt for:
+
+- et sundt og bæredygtigt arbejdsmiljø  
+- ansvarlig brug af ressourcer  
+- bevidste valg af leverandører og samarbejdspartnere  
+- sammenhæng mellem forretning, ansvar og samfund  
+
+Hvis du har spørgsmål til vores virksomhed, principper eller ansvarlighed, er du velkommen til at  
+**[kontakte os](/contact/)**.

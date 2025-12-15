@@ -12,6 +12,8 @@ keywords: >
   developer enablement, softwarekvalitet, sikkerhedscoaching, secure code review,
   trusselsmodellering, sikkerhedsarkitektur, risikostyring, Silkeborg, Jylland, Danmark
 
+destination: output
+
 logo:
   mobile: "images/logo/logo-mobile.svg"
   mobile_height: "32px"

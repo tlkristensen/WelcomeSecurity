@@ -73,7 +73,6 @@ Du har også ret til at klage til **Datatilsynet**, hvis du mener, at vores beha
 ## Dataansvarlig
 
 **WelcomeSecurity** 
-
 Thomas Ljungberg Kristensen
 CVR: DK36622652  
 Ferskvandscentret, Vejlsøvej 51  
