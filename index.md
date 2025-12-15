@@ -2,7 +2,7 @@
 title: WelcomeSecurity - Security Sidekick
 layout: home
 description: "WelcomeSecurity hjælper udviklere, DevOps-teams og Security Champions med at bygge sikker og robust software hurtigere – uden at sikkerhed bliver en stopklods."
-intro_image: "images/thomas-speaking.webp"
+intro_image: "images/illustrations/thomas-speaking.webp"
 intro_image_absolute: false
 intro_image_hide_on_mobile: true
 show_call_box: false
@@ -26,4 +26,4 @@ Kan du genkende dette:
 
 Se hvordan vi kan støtte jeres superhelte nedenfor eller spring direkte til [superhelte vi allerede har hjulpet](/superhelte/) 
 
-Andre kalder det referencer. Vi kalder det samarbejder.
+Andre kalder det referencer. Vi kalder det vores superhelte.

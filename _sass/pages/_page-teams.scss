@@ -35,9 +35,11 @@
   }
 
   .team-summary-large {
-    background-color: $white-offset;
-    padding: 30px;
-    border-radius: 3px;
+    background-color: $white;
+    padding: 28px;
+    border-radius: 10px;
+    border: 1.5px solid #cdd2d8;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
     .team-image {
       height: 90px;
       width: 90px;
@@ -46,6 +48,19 @@
       overflow: hidden;
       img {
         width: 90px;
+      }
+    }
+  }
+}
+
+.page-team {
+  .team-single {
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
       }
     }
   }

@@ -2,11 +2,13 @@
 title: "Kultur & Awareness – Skab forståelse, ansvar og adfærd"
 weight: 3
 description: "Øjenåbnende demoer, undervisning og præsentationer der ændrer adfærd og styrker sikkerhedskulturen i teams, organisationer og ledelse."
+banner_image: "/images/illustrations/start-here.webp"
 ---
 
 ## Sikkerhed starter med mennesker – ikke teknologien
 
 De fleste sikkerhedsproblemer opstår ikke, fordi teknologien svigter.  
+
 De opstår, fordi mennesker:
 
 - ikke forstår konsekvenserne  
@@ -16,6 +18,7 @@ De opstår, fordi mennesker:
 - ikke ser sig selv som en del af løsningen  
 
 En stærk sikkerhedskultur betyder ikke “flere regler”.  
+
 Det betyder **flere mennesker**, der forstår hvorfor sikkerhed er vigtigt — og som føler sig kompetente til at bidrage.
 
 ---
@@ -23,6 +26,7 @@ Det betyder **flere mennesker**, der forstår hvorfor sikkerhed er vigtigt — o
 ## Øjenåbnende demoer, der gør det konkret
 
 Folk husker ikke en PowerPoint med policies.  
+
 Men de husker en god demo.
 
 Vi bruger hands-on og visuelle demonstrationer til at vise, hvordan:
@@ -34,7 +38,7 @@ Vi bruger hands-on og visuelle demonstrationer til at vise, hvordan:
 - social engineering udnytter helt menneskelige reaktioner  
 - simple ændringer kan gøre stor forskel  
 
-Det skaber **indsigt, motivation og ansvar** hos medarbejdere og ledelse.
+Det skaber **indsigt, motivation og ansvar** hos medarbejdere og ledelse samt et **fælles mål**.
 
 ---
 
@@ -89,6 +93,7 @@ Fordi:
 - udviklere lærer bedst gennem praksis og kontekst  
 
 Dette er ikke klassisk “awareness”.  
+
 Det er **kulturudvikling**, forankret i virkelighed, praksis og menneskelig adfærd.
 
 ---

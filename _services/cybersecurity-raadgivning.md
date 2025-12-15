@@ -1,87 +1,115 @@
 ---
-title: "Cybersecurity Rådgivning"
-date: 2025-11-12T12:33:46+10:00
+title: "... og alt det andet Cybersecurity"
 weight: 6
+banner_image: "/images/illustrations/alt-det-andet.webp"
+description: "Supplerende rådgivning inden for klassisk cybersecurity – når I har brug for overblik, prioritering og sammenhæng med jeres udvikling og forretning."
 ---
 
-Strategisk cybersecurity rådgivning der hjælper din virksomhed med at navigere i det komplekse sikkerhedslandskab.
+## Når I har brug for overblik – også uden for koden
 
-![Cybersecurity Consulting](/images/security/consulting.jpg)
+WelcomeSecuritys primære fokus er udviklere, software og Secure Development. Men sikkerhed stopper ikke ved kodebasen.
 
-# IT-sikkerhed – kaos eller køligt overblik?
+Mange organisationer har også behov for sparring og rådgivning om de mere klassiske cybersecurity-områder – **så længe det sker med respekt for forretning, mennesker og udviklingsflow**.
 
-Mange virksomheder oplever IT-sikkerhed som et kaotisk område fyldt med tekniske termer og uoverskuelige trusler. Vi hjælper dig med at gå fra kaos til køligt overblik.
+Derfor tilbyder vi supplerende cybersecurity rådgivning, som binder helheden sammen og sikrer, at sikkerhedsindsatsen hænger sammen på tværs af organisationen.
 
-## Vores rådgivningsservices
-
-### Sikkerhedsstrategi udvikling
-- **Risk assessment** baseret på din specifikke forretning
-- **Sikkerhedspolitik** tilpasset din virksomhedskultur  
-- **Compliance** vurdering ift. GDPR og branchespecifikke krav
-- **Budget planlægning** for sikkerhedsinvesteringer
-
-### Leverandør evaluering
-- **Sikkerhedsvendor** vurdering og sammenligning
-- **Contract review** af sikkerhedsrelaterede aftaler
-- **Due diligence** på tredjepartsleverandører
-- **RFP unterstøttelse** ved sikkerhedsindkøb
-
-### Incident response planlægning
-- **Beredskabsplaner** for sikkerhedshændelser
-- **Response teams** struktur og ansvar
-- **Kommunikationsprocedurer** internt og eksternt
-- **Øvelser og simulationer** for at teste beredskabet
-
-> God sikkerhedsledelse starter med den rigtige strategi
-
-## Seks effektive råd til bedre IT-sikkerhed
-
-1. **Implementer multi-faktor autentificering** på alle kritiske systemer
-2. **Hold software opdateret** med automatiske security patches
-3. **Træn medarbejdere** i at genkende phishing og social engineering
-4. **Segmenter netværket** for at begrænse lateral movement
-5. **Monitorer aktivitet** med SIEM og endpoint detection
-6. **Test jeres backup** regelmæssigt for at sikre recovery
-
-## Specialområder
-
-### GDPR compliance
-- **Data mapping** og klassificering
-- **Privacy impact assessments**
-- **Breach notification** procedurer
-- **DPO** rådgivning og support
-
-### Industrial control systems
-- **OT security** assessment og implementering
-- **Network segmentation** mellem IT og OT
-- **Asset inventory** og vulnerability management
-- **Incident response** for produktionsmiljøer
-
-### Cloud sikkerhed
-- **Cloud security architecture** review
-- **Multi-cloud** sikkerhedsstrategi
-- **Container og DevSecOps** sikkerhed
-- **Zero trust** implementering
-
-## Vores tilgang
-
-### Forretningsfokuseret
-Vi starter altid med at forstå din forretning og dine mål, så sikkerhedstiltag skaber værdi i stedet for at hæmme produktiviteten.
-
-### Pragmatisk
-Vores anbefalinger er realistiske og tager højde for dine ressourcer og organisatoriske modenhed.
-
-### Kontinuerlig
-Sikkerhed er ikke et projekt men en løbende proces. Vi støtter jer i den lange bane.
+> Denne ydelse er et supplement – ikke et alternativ – til vores udviklernære Security Sidekick-arbejde.
 
 ---
 
-## Start med en sikkerhedskonsultation
+## Hvad kan vi hjælpe med?
 
-Book et møde med vores sikkerhedseksperter og få klarhed over dine muligheder for at styrke IT-sikkerheden.
+### Strategisk sikkerhedsoverblik
+Vi hjælper jer med at skabe struktur og overblik, uden at drukne jer i rammeværk og buzzwords.
 
-**Strategisk konsultation**: 2.500 kr./time  
-**GDPR assessment**: Fra 15.000 kr.  
-**Sikkerhedspolitik udvikling**: Fra 25.000 kr.
+- overordnet risikoforståelse baseret på jeres forretning  
+- prioritering af sikkerhedsindsatser  
+- sammenhæng mellem strategi, udvikling og drift
+- GAP analyser, for eksempel med udgangspunkt i CIS Top 18, OWASP ASVS, OWASP SAMM 
+- realistiske og anvendelige anbefalinger  
 
-Kontakt info@welcomesecurity.net eller +45 2158 1410 for at booke dit konsultationsmøde.
+---
+
+### Sikkerhedspolitikker & governance (letvægt)
+Når der er behov for politikker og styring, hjælper vi med at gøre dem **brugbare**.
+
+- sikkerhedspolitikker tilpasset jeres kultur  
+- roller og ansvar (uden unødigt bureaukrati)  
+- kobling til udvikling og daglig praksis  
+- sparring om governance og modenhed  
+
+---
+
+### Leverandør- og tredjeparts­vurderinger
+Vi hjælper jer med at stille de rigtige spørgsmål – og ignorere støjen.
+
+- vurdering af sikkerhedsværktøjer og leverandører  
+- sparring ved indkøb af sikkerhedsløsninger  
+- gennemgang af sikkerhedsrelaterede kontraktkrav  
+- due diligence i et praktisk perspektiv  
+
+---
+
+### Compliance & regulering (fx GDPR)
+Vi hjælper jer med at forstå **hvad der er vigtigt – og hvad der ikke er**.
+
+- overordnet compliance-sparring (fx GDPR, IEC 62443, NIS2)  
+- forståelse af krav set fra udvikling og forretning  
+- kobling mellem compliance og Secure SDLC  
+- pragmatisk tilgang frem for dokumenttung implementering  
+
+---
+
+### Cloud- og platformssikkerhed (overblik)
+Når sikkerhed skal ses på tværs af platforme og miljøer.
+
+- overordnet vurdering af cloud-setup  
+- sikkerhedsarkitektur i cloud og hybridmiljøer  
+- sammenhæng mellem cloud, CI/CD og udvikling  
+- sparring om modenhed og prioritering  
+
+---
+
+## Hvad vi **ikke** tilbyder
+
+For at være helt tydelige:
+
+- ❌ Incident Response som operativ ydelse  
+- ❌ Forensic undersøgelser  
+- ❌ 24/7 SOC eller overvågning  
+
+Hvis I har behov for disse ydelser, hjælper vi gerne med **sparring eller leverandørvalg** – men vi er ikke dem, der rykker ud midt om natten.
+
+---
+
+## Vores tilgang – også her
+
+Selv når vi arbejder med klassisk cybersecurity, arbejder vi:
+
+- forretningsnært  
+- pragmatisk  
+- udvikler-bevidst  
+- uden unødigt sikkerhedsteater  
+- med fokus på beslutningsstøtte frem for frygt  
+
+Sikkerhed skal skabe ro og overblik – ikke mere kompleksitet.
+
+---
+
+## Hvornår giver denne service mening?
+
+Denne ydelse er relevant, når:
+
+- I mangler overblik over den samlede sikkerhedsindsats  
+- sikkerhed, udvikling og ledelse taler forbi hinanden  
+- I står over for valg af værktøjer eller leverandører  
+- compliance fylder mere end det burde  
+- I vil sikre sammenhæng mellem strategi og praksis  
+
+---
+
+## Klar til at få overblik?
+
+Hvis I har brug for sparring, der **binder det hele sammen** – uden at flytte fokus væk fra udviklerne – så tager vi gerne en uforpligtende snak.
+
+**[Book en uforpligtende samtale](/contact/){: .button .button-primary}**

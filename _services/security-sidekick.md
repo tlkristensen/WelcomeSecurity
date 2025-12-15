@@ -7,7 +7,7 @@ intro_image_hide_on_mobile: false
 banner_image: "/images/illustrations/superhelt.webp"
 ---
 
-Udviklerne er superheltene i jeres organisation.  De bygger de løsninger, som dine kunder, medarbejdere, din virksomhed og samfundet er afhængige af hver eneste dag.
+Udviklerne er superheltene i jeres organisation.  De bygger de løsninger, som dine kunder, dine medarbejdere, din virksomhed og **vores** samfundet er afhængige af hver eneste dag.
 
 Men komplekse teknologier, sårbarheder, frameworks, deadlines og kundekrav gør det svært at holde styr på sikkerheden – samtidig med at tempoet skal opretholdes.
 
@@ -19,7 +19,8 @@ WelcomeSecurity fungerer som en løbende, fleksibel og udviklernær AppSec-partn
 
 ## Hvad indebærer en Security Sidekick?
 
-En Security Sidekick er ikke endnu en konsulent, der afleverer en rapport og forsvinder igen.  
+En Security Sidekick er ikke endnu en konsulent, der afleverer en rapport og forsvinder igen. 
+
 Det er en **integreret samarbejdspartner**, som:
 
 - hjælper udviklere med konkrete spørgsmål i hverdagen  
@@ -44,9 +45,10 @@ Målet er at gøre sikkerhed til en **naturlig og let del af udviklingsarbejdet*
 - forbedring af CI/CD pipelines (security checks hvor de giver mening)  
 - afvejning af sikkerhed, performance og time-to-market  
 - sparring omkring tooling og processer  
-- onboarding af nye udviklere i sikker praksis  
+- onboarding af nye udviklere i sikker praksis
 
 og meget andet!
+
 ---
 
 ## Klar til en Security Sidekick?

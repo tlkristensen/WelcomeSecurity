@@ -2,9 +2,10 @@
 title: "Security Champions"
 weight: 2
 description: "Opbyg et stærkt og levedygtigt Security Champions-program, der løfter sikkerheden i udviklingsteams og gør dem selvkørende i hverdagen."
+banner_image: "/images/illustrations/fish-jumping.webp"
 ---
 
-# Giv jeres udviklingsteams deres egne sikkerheds-superhelte
+# Giv jeres udviklingsteams deres egne sikkerheds-sidekicks til jeres superhelte
 
 Mange udviklingsteams har udviklere, der naturligt tager ansvar for kvalitet, sikkerhed og gode beslutninger. Men uden retning, træning og struktur bliver energien spredt, tilfældig – eller tabt i travlheden.
 
@@ -34,9 +35,11 @@ Og vigtigst af alt:
 ## Hvordan vi hjælper jer i gang
 
 Vi starter altid med jeres kontekst, modenhed og ambitionsniveau.  
+
 Herefter hjælper vi med at:
 
-### 1) **Identificere de rigtige Champions**
+### **Identificere de rigtige Champions**
+
 Ikke nødvendigvis “de bedste udviklere” – men dem med:
 
 - nysgerrighed  
@@ -44,7 +47,8 @@ Ikke nødvendigvis “de bedste udviklere” – men dem med:
 - interesse for kvalitet  
 - lyst til at hjælpe andre  
 
-### 2) **Træne dem i praktisk AppSec**
+### **Træne dem i praktisk AppSec**
+
 Ikke tung teori, men udviklernær praksis:
 
 - secure coding patterns  
@@ -53,7 +57,8 @@ Ikke tung teori, men udviklernær praksis:
 - risikoafvejning  
 - forståelse af moderne trusselbilleder  
 
-### 3) **Etablere struktur og ejerskab**
+### **Etablere struktur og ejerskab**
+
 Vi hjælper jer med:
 
 - rytmer (møder, læringssessioner, reviews)  
@@ -61,14 +66,15 @@ Vi hjælper jer med:
 - kommunikationsveje  
 - forventningsafstemning med ledelsen  
 
-### 4) **Løbende støtte og sparring**
+### **Løbende støtte og sparring**
+
 Champions skal ikke stå alene.  
 
 Vi stiller op som deres **Security Sidekick**, så de har nogen at spørge, lære af og sparre med.
 
 ---
 
-## Klar til at opbygge jeres superhelte-team?
+## Klar til at opbygge jeres sidekick team til at hjælpe jeres superhelte?
 
 Et Security Champions Program er den mest skalerbare måde at løfte sikkerheden i en moderne udviklingsorganisation.
 
