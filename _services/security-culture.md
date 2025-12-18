@@ -119,4 +119,4 @@ Vi hjælper organisationer med at skabe en kultur, hvor sikkerhed:
 - prioriteres  
 - og bliver en naturlig del af hverdagen  
 
-**[Book en uforpligtende snak](/contact/){: .button .button-primary}**
+**[Book en uforpligtende snak](/kontakt/){: .button .button-primary}**

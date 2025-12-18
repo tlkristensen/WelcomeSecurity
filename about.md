@@ -3,9 +3,10 @@ title: WelcomeSecurity og Sustira
 layout: page
 description: "Om WelcomeSecurity – vores mission, principper og ansvar som virksomhed på tværs af sikkerhed og bæredygtighed."
 bodyClass: page-about
+permalink: "/om-os/"
 ---
 
-WelcomeSecurity er en dansk rådgivningsvirksomhed, der arbejder med ansvarlig teknologi, sikker software og bæredygtig forretningsudvikling.
+WelcomeSecurity er en dansk rådgivningsvirksomhed baseret i smukke Silkeborg, der arbejder med ansvarlig teknologi, sikker software og bæredygtig forretningsudvikling.
 
 Virksomheden omfatter både **WelcomeSecurity** (it- og softwaresikkerhed) og **Sustira** (ESG og bæredygtighed).  
 
@@ -55,4 +56,4 @@ Vi arbejder aktivt for:
 - sammenhæng mellem forretning, ansvar og samfund  
 
 Hvis du har spørgsmål til vores virksomhed, principper eller ansvarlighed, er du velkommen til at  
-**[kontakte os](/contact/)**.
+**[kontakte os](/kontakt/)**.

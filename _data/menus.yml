@@ -1,6 +1,6 @@
 main:
   - name: "Vi tilbyder"
-    url: "/services/"
+    url: "/vi-tilbyder/"
     weight: 2
   - name: "Vores superhelte"
     url: "/superhelte/"
@@ -9,12 +9,12 @@ main:
     url: "/team/"
     weight: 4
   - name: "Os"
-    url: "/about/"
+    url: "/om-os/"
     weight: 5
 
 footer:
   - name: "Vi tilbyder"
-    url: "/services/"
+    url: "/vi-tilbyder/"
     weight: 2
   - name: "Vores superhelte"
     url: "/superhelte/"
@@ -23,9 +23,9 @@ footer:
     url: "/team/"
     weight: 4
   - name: "Os"
-    url: "/about/"
+    url: "/om-os/"
     weight: 5
   - name: "Privatlivspolitik"
-    url: "/privacy/"
+    url: "/privatlivspolitik/"
     weight: 6
     

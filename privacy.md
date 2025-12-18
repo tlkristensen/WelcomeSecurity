@@ -2,6 +2,7 @@
 title: Privatlivspolitik
 layout: page
 description: Hvordan WelcomeSecurity behandler personoplysninger
+permalink: "/privatlivspolitik/"
 ---
 
 ## Privatliv hos WelcomeSecurity

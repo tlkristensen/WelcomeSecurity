@@ -7,6 +7,7 @@ intro_image_absolute: false
 intro_image_hide_on_mobile: false
 intro_image_caption: "Høj hastighed kræver stærke bremser – og stærk sikkerhed"
 header: It-sikkerhed der hjælper – ikke bremser
+permalink: "/vi-tilbyder/"
 ---
 
 Udviklere skal levere hurtigere, sikkerhed skal være bedre, og der er aldrig nok tid eller ressourcer, så der hyres eksterne konsulenter ind, som kritiserer jeres løsning, jeres processer og jeres udviklere, men reelt leverer det ikke andet end rapporter, som I ikke kan forstå.

@@ -108,7 +108,7 @@ Workshoppen giver:
 - mulighed for Capture-the-Flag (CtF) – eller alternativt format  
 
 [Læse mere og tilmeld dig det åbne kursus hos IDA Learning](https://ida.dk/arrangementer-og-kurser/kurser/it-sikkerhed/sikker-softwareudvikling){: target="_blank" rel="noopener noreferrer"} eller
-[tag kontakt for at høre, hvordan det kunne se ud ved jer](/contact/).
+[tag kontakt for at høre, hvordan det kunne se ud ved jer](/kontakt/).
 
 ---
 
@@ -172,4 +172,4 @@ Hvis I vil:
 
 … så er praktisk, udviklernær undervisning et af de mest effektive steder at starte.
 
-**[Book en uforpligtende snak](/contact/){: .button .button-primary}**
+**[Book en uforpligtende snak](/kontakt/){: .button .button-primary}**

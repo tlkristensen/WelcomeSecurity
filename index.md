@@ -22,7 +22,7 @@ Kan du genkende dette:
 **I vil bygge Security Champions op** i teamet  
 **I vil have sikkerhed**, der hjælper jer – ikke bremser jer  
 
-**[Så tager jeg gerne en uforpligtende snak](/contact/){: .button .button-primary}**
+**[Så tager jeg gerne en uforpligtende snak](/kontakt/){: .button .button-primary}**
 
 Se hvordan vi kan støtte jeres superhelte nedenfor eller spring direkte til [superhelte vi allerede har hjulpet](/superhelte/) 
 

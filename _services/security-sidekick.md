@@ -62,4 +62,4 @@ Hvis du vil give dine superhelte en sidekick, der:
 
 … så lad os tale om, hvordan et Security Sidekick-forløb kan se ud hos jer.
 
-**[Book en uforpligtende snak](/contact/){: .button .button-primary}**
+**[Book en uforpligtende snak](/kontakt/){: .button .button-primary}**

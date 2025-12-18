@@ -142,4 +142,4 @@ Hvis I vil:
 
 … så hjælper vi jer hele vejen.
 
-**[Book en uforpligtende snak](/contact/){: .button .button-primary}**
+**[Book en uforpligtende snak](/kontakt/){: .button .button-primary}**

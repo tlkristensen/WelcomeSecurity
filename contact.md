@@ -2,6 +2,7 @@
 title: Kontakt WelcomeSecurity
 layout: contact
 description: "Tag en uforpligtende snak med jeres Security Sidekick om sikker software, udvikling og Security Champions."
+permalink: "/kontakt/"
 ---
 
 ## Klar til at give jeres udviklere en sidekick?

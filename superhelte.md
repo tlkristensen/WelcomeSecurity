@@ -133,4 +133,4 @@ Den har været **sidekick**.
 
 Vil du høre mere om, hvordan vi kan styrke jeres superhelte?
 
-**[Kontakt Os](/contact/){: .button .button-primary}**
+**[Kontakt Os](/kontakt/){: .button .button-primary}**
