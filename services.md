@@ -2,7 +2,7 @@
 title: Sådan hjælper vi jer
 layout: services
 description: WelcomeSecurity tilbyder praktisk it-sikkerhed, der hjælper udviklere med at bygge sikker software uden at bremse tempoet
-intro_image: "images/illustrations/Racecar.webp"
+intro_image: "images/illustrations/racecar.webp"
 intro_image_absolute: false
 intro_image_hide_on_mobile: false
 intro_image_caption: "Høj hastighed kræver stærke bremser – og stærk sikkerhed"
