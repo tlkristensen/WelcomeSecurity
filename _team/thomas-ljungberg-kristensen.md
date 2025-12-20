@@ -135,4 +135,4 @@ Hvis du leder efter:
 
 … så tager jeg gerne en uforpligtende snak.
 
-**[Kontakt mig her](/kontakt/){: .button .button-primary}**
+**[Kontakt mig her]({{ '/kontakt/' | relative_url }}){: .button .button-primary}**

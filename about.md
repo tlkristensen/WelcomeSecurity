@@ -56,4 +56,4 @@ Vi arbejder aktivt for:
 - sammenhæng mellem forretning, ansvar og samfund  
 
 Hvis du har spørgsmål til vores virksomhed, principper eller ansvarlighed, er du velkommen til at  
-**[kontakte os](/kontakt/)**.
+**[kontakte os]({{ '/kontakt/' | relative_url }})**.

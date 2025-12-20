@@ -58,7 +58,7 @@ Formålet er at skabe **forståelse, interesse og nysgerrighed** for it-sikkerhe
 
 Alle kan være med – og for de fleste er det en reel øjenåbner.
 
-[Se præsentationen (PDF)](/presentations/Hacking is an industry-2018.pdf){: target="_blank" rel="noopener noreferrer"}
+[Se præsentationen (PDF)]({{ '/presentations/Hacking is an industry-2018.pdf' | relative_url }}){: target="_blank" rel="noopener noreferrer"}
 
 ---
 
@@ -72,7 +72,7 @@ Et fælles kickoff for hele organisationen med fokus på:
 
 Eventet fungerer både som startskud til et længere forløb – og som et selvstændigt awareness- og kulturtiltag.
 
-[Se præsentationen (PDF)](/presentations/KickOff-Event.pdf){: target="_blank" rel="noopener noreferrer"}
+[Se præsentationen (PDF)]({{ '/presentations/KickOff-Event.pdf' | relative_url }}){: target="_blank" rel="noopener noreferrer"}
 
 ---
 
@@ -87,11 +87,11 @@ Målrettede sessioner med:
 
 Formålet er at **underholde, oplyse og uddanne** – uden at overvælde.
 
-- [Se præsentationen om "exploiting" af systemer (PDF)](/presentations/Exploiting.pdf){: target="_blank" rel="noopener noreferrer"}
+- [Se præsentationen om "exploiting" af systemer (PDF)]({{ '/presentations/Exploiting.pdf' | relative_url }}){: target="_blank" rel="noopener noreferrer"}
 
-- [Se præsentationen om phishing angreb (PDF)](/presentations/Phishing.pdf){: target="_blank" rel="noopener noreferrer"}
+- [Se præsentationen om phishing angreb (PDF)]({{ '/presentations/Phishing.pdf' | relative_url }}){: target="_blank" rel="noopener noreferrer"}
 
-- [Se præsentationen om brug af open source tools i udvikling (PDF)](/presentations/Cloud Native Denmark - Stop doing - Oct 2025.pdf){: target="_blank" rel="noopener noreferrer"}
+- [Se præsentationen om brug af open source tools i udvikling (PDF)]({{ '/presentations/Cloud Native Denmark - Stop doing - Oct 2025.pdf' | relative_url }}){: target="_blank" rel="noopener noreferrer"}
 
 
 ---
@@ -108,7 +108,7 @@ Workshoppen giver:
 - mulighed for Capture-the-Flag (CtF) – eller alternativt format  
 
 [Læse mere og tilmeld dig det åbne kursus hos IDA Learning](https://ida.dk/arrangementer-og-kurser/kurser/it-sikkerhed/sikker-softwareudvikling){: target="_blank" rel="noopener noreferrer"} eller
-[tag kontakt for at høre, hvordan det kunne se ud ved jer](/kontakt/).
+[tag kontakt for at høre, hvordan det kunne se ud ved jer]({{ '/kontakt/' | relative_url }}).
 
 ---
 
