@@ -16,19 +16,9 @@ Vi arbejder med to fagområder, der hver for sig er komplekse – men som hænge
 
 ---
 
-## To fagområder – én fælles mission
-
 ### **WelcomeSecurity**
 
 Her arbejder vi med it- og softwaresikkerhed tæt på udviklere, DevOps-teams og Security Champions.
-
-Fokus er på sikkerhed, der fungerer i praksis:
-- udviklernær sparring  
-- secure software design  
-- praktisk anvendelig sikkerhed  
-- langsigtet opbygning af kompetencer  
-
----
 
 ### **Sustira**
 
@@ -38,17 +28,6 @@ Her hjælper vi virksomheder med:
 - at skabe overblik over ESG og bæredygtighed  
 - at gøre krav og data operationelle  
 - at træffe ansvarlige beslutninger i praksis  
-
----
-
-## Fælles værdier og principper
-
-Selvom fagområderne er forskellige, arbejder vi ud fra de samme grundlæggende principper:
-
-- ansvarlighed frem for kortsigtede løsninger  
-- kvalitet og faglighed  
-- respekt for mennesker, samfund og fælles værdier  
-- tætte samarbejder frem for leverancer på afstand  
 
 ---
 
