@@ -112,4 +112,4 @@ Denne ydelse er relevant, når:
 
 Hvis I har brug for sparring, der **binder det hele sammen** – uden at flytte fokus væk fra udviklerne – så tager vi gerne en uforpligtende snak.
 
-**[Book en uforpligtende samtale](./kontakt/){: .button .button-primary}**
+**[Book en uforpligtende snak]({{ '/kontakt/' | relative_url }}){: .button .button-primary}**

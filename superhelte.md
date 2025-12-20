@@ -31,7 +31,7 @@ Den har været **sidekick**.
 
 ## Udvalgte samarbejdsområder og cases
 
-### ⚡ Kritisk infrastruktur & energi
+### Kritisk infrastruktur & energi
 **Roller:** Security Advisor, Security Architect, midlertidig CISO  
 
 **Fokus:**
@@ -47,7 +47,7 @@ Den har været **sidekick**.
 
 ---
 
-### 🚢 Industri & maritim sektor
+### Industri & maritim sektor
 **Roller:** Security Advisor, IT Security Architect, Platform Engineer
 
 **Fokus:**
@@ -64,7 +64,7 @@ Den har været **sidekick**.
 
 ---
 
-### ☁️ Cloud & DevSecOps (Enterprise)
+### Cloud & DevSecOps (Enterprise)
 **Roller:** Senior Security Consultant  
 
 **Fokus:**
@@ -80,7 +80,7 @@ Den har været **sidekick**.
 
 ---
 
-### 🧠 Udviklingsteams & softwareorganisationer
+### Udviklingsteams & softwareorganisationer
 **Roller:** Security Sidekick, underviser, sparringspartner  
 
 **Fokus:**
@@ -96,7 +96,7 @@ Den har været **sidekick**.
 
 ---
 
-### 🎓 Undervisning & kompetenceopbygning
+### Undervisning & kompetenceopbygning
 **Roller:** Underviser og formidler  
 
 **Fokus:**

@@ -172,4 +172,4 @@ Hvis I vil:
 
 … så er praktisk, udviklernær undervisning et af de mest effektive steder at starte.
 
-**[Book en uforpligtende snak](./kontakt/){: .button .button-primary}**
+**[Book en uforpligtende snak]({{ '/kontakt/' | relative_url }}){: .button .button-primary}**
