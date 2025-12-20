@@ -2,7 +2,7 @@
 title: "Thomas Ljungberg Kristensen"
 image: "images/team/thomas.webp"
 jobtitle: "Security Sidekick - Secure Software Advisor - Stifter"
-linkedinurl: "https://www.linkedin.com/in/thomas-ljungberg-kristensen/"
+linkedinurl: "https://www.linkedin.com/in/thomasljungbergkristensen/"
 email: "thomas@welcomesecurity.net"
 intro_image_absolute: false
 intro_image_hide_on_mobile: true

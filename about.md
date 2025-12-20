@@ -55,5 +55,4 @@ Vi arbejder aktivt for:
 - bevidste valg af leverandører og samarbejdspartnere  
 - sammenhæng mellem forretning, ansvar og samfund  
 
-Hvis du har spørgsmål til vores virksomhed, principper eller ansvarlighed, er du velkommen til at  
-**[kontakte os]({{ '/kontakt/' | relative_url }})**.
+Hvis du har spørgsmål til vores virksomhed, principper eller ansvarlighed, er du velkommen til at **[kontakte os]({{ '/kontakt/' | relative_url }})**.

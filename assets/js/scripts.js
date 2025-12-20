@@ -2,12 +2,38 @@ var body = document.querySelector('body')
 var menuTrigger = document.querySelector('#toggle-main-menu-mobile');
 var menuContainer = document.querySelector('#main-menu-mobile');
 
+// Function to close mobile menu
+function closeMobileMenu() {
+    if (menuContainer && menuTrigger && body) {
+        menuContainer.classList.remove('open');
+        menuTrigger.classList.remove('is-active');
+        body.classList.remove('lock-scroll');
+    }
+}
+
 // Only add event listener if elements exist
 if (menuTrigger && menuContainer && body) {
-    menuTrigger.onclick = function() {
+    menuTrigger.onclick = function(event) {
+        event.stopPropagation(); // Prevent triggering document click
         menuContainer.classList.toggle('open');
         menuTrigger.classList.toggle('is-active')
         body.classList.toggle('lock-scroll')
+    }
+    
+    // Close menu when clicking on a menu item
+    var menuItems = menuContainer.querySelectorAll('a');
+    menuItems.forEach(function(item) {
+        item.onclick = function() {
+            closeMobileMenu();
+        }
+    });
+    
+    // Close menu when clicking on the menu background (not on ul/li)
+    menuContainer.onclick = function(event) {
+        // Only close if clicking directly on the menu container background, not on menu items
+        if (event.target === menuContainer) {
+            closeMobileMenu();
+        }
     }
 }
 

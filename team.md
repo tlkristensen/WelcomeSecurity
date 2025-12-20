@@ -22,15 +22,6 @@ Her arbejder vi med it- og softwaresikkerhed tæt på udviklere, DevOps-teams og
 
 ### **Sustira**
 
-Sustira er vores bæredygtigheds- og ESG-ben og drives af Mie Ljungberg Kristensen.
-
-Her hjælper vi virksomheder med:
-- at skabe overblik over ESG og bæredygtighed  
-- at gøre krav og data operationelle  
-- at træffe ansvarlige beslutninger i praksis  
-
----
-
-## Mød teamet
+Sustira er vores ESG- og bæredygtigheds-ben og drives af Mie Ljungberg Kristensen.
 
 Nedenfor kan du læse mere om de mennesker, der står bag WelcomeSecurity og Sustira – deres baggrund, erfaring og tilgang.

@@ -46,16 +46,16 @@ Det skaber **indsigt, motivation og ansvar** hos medarbejdere og ledelse samt et
 
 Træningen tilpasses jeres målgruppe:
 
-### 🔹 Udviklere og DevOps-teams
+### Udviklere og DevOps-teams
 Fokus på secure coding, trusselsforståelse og praksis.
 
-### 🔹 Produktteams
+### Produktteams
 Fokus på risici, prioritering og designvalg.
 
-### 🔹 Ledelse
+### Ledelse
 Fokus på ansvar, governance, risikostyring og beslutninger.
 
-### 🔹 Hele organisationen
+### Hele organisationen
 Fokus på kultur, adfærd, awareness og hvorfor sikkerhed betyder noget for *alle*.
 
 ---
@@ -110,13 +110,6 @@ Det er **kulturudvikling**, forankret i virkelighed, praksis og menneskelig adf�
 
 ---
 
-## Vil du skabe en stærkere sikkerhedskultur?
-
-Vi hjælper organisationer med at skabe en kultur, hvor sikkerhed:
-
-- forstås  
-- ejes  
-- prioriteres  
-- og bliver en naturlig del af hverdagen  
+## Vil du skabe en stærkere sikkerhedskultur? 
 
 **[Book en uforpligtende snak]({{ '/kontakt/' | relative_url }}){: .button .button-primary}**

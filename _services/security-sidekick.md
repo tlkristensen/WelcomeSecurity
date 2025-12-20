@@ -37,7 +37,7 @@ Målet er at gøre sikkerhed til en **naturlig og let del af udviklingsarbejdet*
 
 ## Eksempler på opgaver jeres Security Sidekick kan hjælpe med
 
-- støtte til effektivt tilpasning af løsning til IEC62443, GDPR, ISO 27001 etc.
+- støtte til effektivt tilpasning af løsning til IEC62443, GDPR, ISO 27001 osv.
 - sparring om secure coding patterns  
 - vurdering af teknisk risiko  
 - threat modeling på nye features eller services  
