@@ -33,6 +33,7 @@ Den har været **sidekick**.
 
 ### ⚡ Kritisk infrastruktur & energi
 **Roller:** Security Advisor, Security Architect, midlertidig CISO  
+
 **Fokus:**
 - secure software development i kritiske miljøer  
 - rådgivning til CISO og ledelse  
@@ -48,6 +49,7 @@ Den har været **sidekick**.
 
 ### 🚢 Industri & maritim sektor
 **Roller:** Security Advisor, IT Security Architect, Platform Engineer
+
 **Fokus:**
 - implementering og dokumentation af IEC 62443  
 - forbedring af eksisterende løsninger  
@@ -64,6 +66,7 @@ Den har været **sidekick**.
 
 ### ☁️ Cloud & DevSecOps (Enterprise)
 **Roller:** Senior Security Consultant  
+
 **Fokus:**
 - sikker anvendelse af cloud-platforme  
 - DevSecOps og sikkerhedsautomatisering  
@@ -79,6 +82,7 @@ Den har været **sidekick**.
 
 ### 🧠 Udviklingsteams & softwareorganisationer
 **Roller:** Security Sidekick, underviser, sparringspartner  
+
 **Fokus:**
 - secure coding og sikker arkitektur  
 - trusselsforståelse og risikovurdering  
@@ -94,6 +98,7 @@ Den har været **sidekick**.
 
 ### 🎓 Undervisning & kompetenceopbygning
 **Roller:** Underviser og formidler  
+
 **Fokus:**
 - secure software development for udviklere  
 - 3-dages intensive kurser  

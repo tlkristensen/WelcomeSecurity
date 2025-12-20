@@ -2,7 +2,7 @@
 title: "Undervisning af Udviklere"
 weight: 4
 description: "Praktisk og udviklernær undervisning i secure coding, trusselsforståelse og gode sikkerhedsvaner – målrettet jeres udviklere, teams og teknologier."
-banner_image: "/images/illustrations/cloud native-teaching.webp"
+banner_image: "/images/illustrations/cloud-native-teaching.webp"
 ---
 
 ## Undervisning der gør udviklere stærkere – ikke langsommere
@@ -172,4 +172,4 @@ Hvis I vil:
 
 … så er praktisk, udviklernær undervisning et af de mest effektive steder at starte.
 
-**[Book en uforpligtende snak](/kontakt/){: .button .button-primary}**
+**[Book en uforpligtende snak](./kontakt/){: .button .button-primary}**

@@ -78,4 +78,4 @@ Vi stiller op som deres **Security Sidekick**, så de har nogen at spørge, lær
 
 Et Security Champions Program er den mest skalerbare måde at løfte sikkerheden i en moderne udviklingsorganisation.
 
-**[Book en uforpligtende snak](/kontakt/){: .button .button-primary}**
+**[Book en uforpligtende snak](./kontakt/){: .button .button-primary}**
