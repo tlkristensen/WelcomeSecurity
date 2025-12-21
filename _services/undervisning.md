@@ -46,7 +46,7 @@ Nedenfor er eksempler på undervisnings- og præsentationsformater, vi allerede 
 
 ## Eksempler på undervisnings- og læringsformater
 
-### 1️⃣ **Hacking is an Industry** – præsentation med demo (1–2 timer)
+### <span style="color: #65b22e; font-weight: bold;">1</span> **Hacking is an Industry** – præsentation med demo (1–2 timer)
 
 En øjenåbnende præsentation med live demonstrationer, der forklarer:
 
@@ -62,7 +62,7 @@ Alle kan være med – og for de fleste er det en reel øjenåbner.
 
 ---
 
-### 2️⃣ **Kickoff-event om it-sikkerhed & software** (ca. 5 timer)
+### <span style="color: #65b22e; font-weight: bold;">2</span> **Kickoff-event om it-sikkerhed & software** (ca. 5 timer)
 
 Et fælles kickoff for hele organisationen med fokus på:
 
@@ -76,7 +76,7 @@ Eventet fungerer både som startskud til et længere forløb – og som et selvs
 
 ---
 
-### 3️⃣ **Kortere demo- og inspirationssessioner** (1–2 timer)
+### <span style="color: #65b22e; font-weight: bold;">3</span> **Kortere demo- og inspirationssessioner** (1–2 timer)
 
 Målrettede sessioner med:
 
@@ -96,7 +96,7 @@ Formålet er at **underholde, oplyse og uddanne** – uden at overvælde.
 
 ---
 
-### 4️⃣ **3-dages workshop: It-sikkerhed for udviklere**
+### <span style="color: #65b22e; font-weight: bold;">4</span> **3-dages workshop: It-sikkerhed for udviklere**
 
 En intensiv workshop, der svarer til det kursus, jeg aktuelt afholder i samarbejde med **IDA Learning**.
 
@@ -112,7 +112,7 @@ Workshoppen giver:
 
 ---
 
-### 5️⃣ **10 ECTS uddannelsesmodul (ca. 270 timer)**
+### <span style="color: #65b22e; font-weight: bold;">5</span> **10 ECTS uddannelsesmodul (ca. 270 timer)**
 
 Et formelt uddannelsesmodul (afholdt i samarbejde med **EADania**) for udviklere, der skal dybt ned i:
 
