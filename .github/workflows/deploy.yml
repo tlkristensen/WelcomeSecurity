@@ -114,26 +114,13 @@ jobs:
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
 
-      - name: Verify vars/secrets are loaded
-        run: |
-          echo "Checking secrets..."
-          echo "DEPLOY_HOST=$DEPLOY_HOST (len: ${#DEPLOY_HOST})"
-          echo "DEPLOY_USER=$DEPLOY_USER (len: ${#DEPLOY_USER})"
-          echo "DEPLOY_PORT=$DEPLOY_PORT (len: ${#DEPLOY_PORT})"
-          echo "DEPLOY_PATH=$DEPLOY_PATH (len: ${#DEPLOY_PATH})"
-          echo "DEPLOY_SSH_PASSWORD length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
-          
-          if [ -z "$DEPLOY_PATH" ]; then
-            echo "ERROR: DEPLOY_PATH is empty!"
-            echo "Make sure environment variables are created in GitHub Environment, and password secret exists"
-            exit 1
-          fi
-
       - name: Atomic swap via rename
+        id: swap
         run: |
           STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
           DEPLOY_PATH="$DEPLOY_PATH"
           BACKUP_NAME=".backup_$(date +%s)"
+          echo "BACKUP_NAME=${BACKUP_NAME}" >> $GITHUB_OUTPUT
           
           echo "Performing atomic rename-swap..."
           echo "  From: $STAGING_NAME"
@@ -148,35 +135,42 @@ jobs:
             $DEPLOY_USER@$DEPLOY_HOST \
             "cd \"$DEPLOY_PATH\" && ([ -d htdocs ] && mv htdocs \"$BACKUP_NAME\" && echo \"✓ Old site backed up to $BACKUP_NAME\" || echo \"No old site to backup\") && mv \"$STAGING_NAME\" htdocs && echo '✓ New site is live' || (echo 'ERROR: Swap failed'; exit 1)"
 
+      - name: Verify deployment
+        run: |
+          # Give the web server a moment to pick up the new files
+          sleep 2
+          # Fail if the site doesn't respond with a successful HTTP status
+          curl -f --connect-timeout 5 --max-time 15 -s -o /dev/null -w '%{http_code}' http://$DEPLOY_HOST/index.html \
+            && echo '✓ Site is responding' \
+            || (echo 'ERROR: Site verification failed'; exit 1)
+
       - name: Cleanup on failure (rollback)
         if: failure()
         run: |
           STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
+          BACKUP_NAME="${{ steps.swap.outputs.BACKUP_NAME }}"
           DEPLOY_PATH="$DEPLOY_PATH"
-          
-          # Remove staging directory if deployment failed
-          if [ -n "${STAGING_NAME}" ]; then
-            sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-              ssh -P $DEPLOY_PORT \
-              -o StrictHostKeyChecking=no \
-              -o UserKnownHostsFile=/dev/null \
-              $DEPLOY_USER@$DEPLOY_HOST \
-              "rm -rf \"$DEPLOY_PATH/$STAGING_NAME\"" || echo "Could not clean up staging directory"
-          fi
-          
-          echo "⚠ Deployment failed. Staging directory cleaned up."
-          echo "Check workflow logs above for details."
 
-      - name: Verify deployment
-        run: |
-          # Basic smoke test to verify site is accessible
+          echo "⚠ Deployment failed. Attempting rollback..."
+
+          # On failure, attempt to restore the previous site from backup
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
             ssh -P $DEPLOY_PORT \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             $DEPLOY_USER@$DEPLOY_HOST \
-            "test -d '$DEPLOY_PATH/htdocs/assets' && echo '✓ Deployment verified: assets directory exists'" || \
-            (echo "WARNING: Could not verify deployment"; exit 0)
+            "set -e; cd \"$DEPLOY_PATH\"; \
+             if [ -d \"$BACKUP_NAME\" ]; then \
+               echo 'Rolling back to previous site...'; \
+               [ -d htdocs ] && mv htdocs .failed_${{ github.run_id }} || true; \
+               mv \"$BACKUP_NAME\" htdocs && echo '✓ Rolled back to previous site'; \
+             else \
+               echo 'No backup found to rollback.'; \
+             fi; \
+             # Clean up any leftover staging dir if it still exists
+             [ -n \"$STAGING_NAME\" ] && [ -d \"$STAGING_NAME\" ] && rm -rf \"$STAGING_NAME\" || true"
+
+          echo "Rollback step completed. Check logs for details."
 
       - name: Deployment summary
         if: success()
