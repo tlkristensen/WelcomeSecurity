@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   build-and-deploy:
-    environment: master
     runs-on: ubuntu-latest
     
     steps:
@@ -88,6 +87,7 @@ jobs:
           STAGING_DIR="${{ secrets.DEPLOY_PATH }}/.deploy_tmp_${DEPLOY_RUN_ID}"
           
           echo "STAGING_DIR=${STAGING_DIR}" >> $GITHUB_OUTPUT
+          echo "STAGING_NAME=.deploy_tmp_${DEPLOY_RUN_ID}" >> $GITHUB_OUTPUT
           
           # Create staging directory
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
@@ -98,7 +98,6 @@ jobs:
             "mkdir -p ${STAGING_DIR}" || exit 1
           
           # Upload new site content to staging directory using SCP
-          # Since SCP doesn't have selective deletion like rsync, we'll upload everything
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
             scp -P ${{ secrets.DEPLOY_PORT }} \
             -r \
@@ -124,36 +123,39 @@ jobs:
             exit 1
           fi
 
-      - name: Atomic swap (or fallback to direct upload)
+      - name: Atomic swap via rename
         run: |
-          STAGING_DIR="${{ steps.deploy.outputs.STAGING_DIR }}"
-          FINAL_DIR="${{ secrets.DEPLOY_PATH }}"
-          BACKUP_DIR="${{ secrets.DEPLOY_PATH }}/.backup_$(date +%s)"
+          STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
+          DEPLOY_PATH="${{ secrets.DEPLOY_PATH }}"
+          BACKUP_NAME=".backup_$(date +%s)"
           
-          echo "Performing atomic swap..."
+          echo "Performing atomic rename-swap..."
+          echo "  From: $STAGING_NAME"
+          echo "  To: htdocs"
+          echo "  Backup: $BACKUP_NAME (if old site exists)"
           
-          # One-line SSH to do the swap atomically (with verbose output)
+          # Atomic rename: backup old htdocs if exists, then rename staging to htdocs
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
             ssh -P ${{ secrets.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "echo \"Staging: $STAGING_DIR\"; echo \"Live: $FINAL_DIR\"; echo \"Backup: $BACKUP_DIR\"; if [ -d \"$FINAL_DIR\" ]; then mv \"$FINAL_DIR\" \"$BACKUP_DIR\" && echo \"Backed up old site\"; fi && mv \"$STAGING_DIR\" \"$FINAL_DIR\" && echo '✓ Swap complete' || (echo 'Swap failed'; exit 1)"
-        shell: bash
+            "cd \"$DEPLOY_PATH\" && ([ -d htdocs ] && mv htdocs \"$BACKUP_NAME\" && echo \"✓ Old site backed up to $BACKUP_NAME\" || echo \"No old site to backup\") && mv \"$STAGING_NAME\" htdocs && echo '✓ New site is live' || (echo 'ERROR: Swap failed'; exit 1)"
 
       - name: Cleanup on failure (rollback)
         if: failure()
         run: |
-          STAGING_DIR="${{ steps.deploy.outputs.STAGING_DIR }}"
+          STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
+          DEPLOY_PATH="${{ secrets.DEPLOY_PATH }}"
           
           # Remove staging directory if deployment failed
-          if [ -n "${STAGING_DIR}" ]; then
+          if [ -n "${STAGING_NAME}" ]; then
             sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
               ssh -P ${{ secrets.DEPLOY_PORT }} \
               -o StrictHostKeyChecking=no \
               -o UserKnownHostsFile=/dev/null \
               ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-              "rm -rf ${STAGING_DIR}" || echo "Could not clean up staging directory"
+              "rm -rf \"$DEPLOY_PATH/$STAGING_NAME\"" || echo "Could not clean up staging directory"
           fi
           
           echo "⚠ Deployment failed. Staging directory cleaned up."
@@ -167,12 +169,12 @@ jobs:
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "test -d '${{ secrets.DEPLOY_PATH }}/assets' && echo '✓ Deployment verified: assets directory exists'" || \
+            "test -d '${{ secrets.DEPLOY_PATH }}/htdocs/assets' && echo '✓ Deployment verified: assets directory exists'" || \
             (echo "WARNING: Could not verify deployment"; exit 0)
 
       - name: Deployment summary
         if: success()
         run: |
-          echo "✅ Deployment to ${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }} completed successfully"
+          echo "✅ Deployment to ${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/htdocs completed successfully"
           echo "Run ID: ${{ github.run_id }}"
           echo "Commit: ${{ github.sha }}"
