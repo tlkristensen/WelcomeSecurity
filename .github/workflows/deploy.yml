@@ -116,17 +116,14 @@ jobs:
           BACKUP_DIR="${{ secrets.DEPLOY_PATH }}/.backup_$(date +%s)"
           
           echo "Performing atomic swap..."
-          echo "  From: $STAGING_DIR"
-          echo "  To: $FINAL_DIR"
-          echo "  Backup: $BACKUP_DIR"
           
-          # One-line SSH to do the swap atomically
+          # One-line SSH to do the swap atomically (with verbose output)
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
             ssh -P ${{ secrets.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "if [ -d \"$FINAL_DIR\" ]; then mv \"$FINAL_DIR\" \"$BACKUP_DIR\"; fi && mv \"$STAGING_DIR\" \"$FINAL_DIR\" && echo '✓ Swap complete' || (echo 'Swap failed'; exit 1)"
+            "echo \"Staging: $STAGING_DIR\"; echo \"Live: $FINAL_DIR\"; echo \"Backup: $BACKUP_DIR\"; if [ -d \"$FINAL_DIR\" ]; then mv \"$FINAL_DIR\" \"$BACKUP_DIR\" && echo \"Backed up old site\"; fi && mv \"$STAGING_DIR\" \"$FINAL_DIR\" && echo '✓ Swap complete' || (echo 'Swap failed'; exit 1)"
         shell: bash
 
       - name: Cleanup on failure (rollback)
