@@ -126,7 +126,7 @@ jobs:
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "if [ -d '$FINAL_DIR' ]; then mv '$FINAL_DIR' '$BACKUP_DIR'; fi && mv '$STAGING_DIR' '$FINAL_DIR' && echo '✓ Swap complete' || (echo 'Swap failed'; exit 1)"
+            "if [ -d \"$FINAL_DIR\" ]; then mv \"$FINAL_DIR\" \"$BACKUP_DIR\"; fi && mv \"$STAGING_DIR\" \"$FINAL_DIR\" && echo '✓ Swap complete' || (echo 'Swap failed'; exit 1)"
         shell: bash
 
       - name: Cleanup on failure (rollback)
