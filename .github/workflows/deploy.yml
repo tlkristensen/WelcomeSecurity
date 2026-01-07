@@ -109,6 +109,21 @@ jobs:
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
 
+      - name: Verify secrets are loaded
+        run: |
+          echo "Checking secrets..."
+          echo "DEPLOY_HOST length: $(echo -n '${{ secrets.DEPLOY_HOST }}' | wc -c)"
+          echo "DEPLOY_USER length: $(echo -n '${{ secrets.DEPLOY_USER }}' | wc -c)"
+          echo "DEPLOY_PORT length: $(echo -n '${{ secrets.DEPLOY_PORT }}' | wc -c)"
+          echo "DEPLOY_PATH length: $(echo -n '${{ secrets.DEPLOY_PATH }}' | wc -c)"
+          echo "DEPLOY_SSH_PASSWORD length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
+          
+          if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
+            echo "ERROR: DEPLOY_PATH is empty!"
+            echo "Make sure all 5 secrets are created in GitHub: Settings > Secrets"
+            exit 1
+          fi
+
       - name: Atomic swap (or fallback to direct upload)
         run: |
           STAGING_DIR="${{ steps.deploy.outputs.STAGING_DIR }}"
