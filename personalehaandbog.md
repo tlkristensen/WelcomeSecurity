@@ -1,10 +1,10 @@
 ---
-title: "Personalhåndbog"
+title: "Personalehåndbog"
 layout: page
-permalink: /personalhandbog/
+permalink: /personalehaandbog/
 ---
 
-# Personalhåndbog (ultrakort)
+# Personalhåndbog
 
 **Virksomhed:** WelcomeSecurity  
 **Version:** 1.0 
