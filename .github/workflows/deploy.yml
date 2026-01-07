@@ -13,6 +13,11 @@ jobs:
   build-and-deploy:
     environment: production
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+      DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
     
     steps:
       - name: Checkout code
@@ -53,9 +58,9 @@ jobs:
           # GitHub's runner is in a clean environment, so this is safe
           cat > ~/.ssh/config << EOF
           Host deploy
-            HostName ${{ vars.DEPLOY_HOST }}
-            Port ${{ vars.DEPLOY_PORT }}
-            User ${{ vars.DEPLOY_USER }}
+            HostName $DEPLOY_HOST
+            Port $DEPLOY_PORT
+            User $DEPLOY_USER
             StrictHostKeyChecking no
             UserKnownHostsFile=/dev/null
           EOF
@@ -63,19 +68,19 @@ jobs:
 
       - name: Test SCP connection
         run: |
-          echo "Testing SCP connection to ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PORT }}"
+          echo "Testing SCP connection to $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PORT"
           
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -v -P ${{ vars.DEPLOY_PORT }} \
+            ssh -v -P $DEPLOY_PORT \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
+            $DEPLOY_USER@$DEPLOY_HOST \
             "echo 'SSH connection successful' && pwd" || {
             echo "✗ SSH connection failed"
             echo "Check:"
-            echo "  - DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}"
-            echo "  - DEPLOY_USER: ${{ vars.DEPLOY_USER }}"
-            echo "  - DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}"
+            echo "  - DEPLOY_HOST: $DEPLOY_HOST"
+            echo "  - DEPLOY_USER: $DEPLOY_USER"
+            echo "  - DEPLOY_PORT: $DEPLOY_PORT"
             echo "  - Password length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
             exit 1
           }
@@ -85,40 +90,40 @@ jobs:
         id: deploy
         run: |
           DEPLOY_RUN_ID="${{ github.run_id }}"
-          STAGING_DIR="${{ vars.DEPLOY_PATH }}/.deploy_tmp_${DEPLOY_RUN_ID}"
+          STAGING_DIR="$DEPLOY_PATH/.deploy_tmp_${DEPLOY_RUN_ID}"
           
           echo "STAGING_DIR=${STAGING_DIR}" >> $GITHUB_OUTPUT
           echo "STAGING_NAME=.deploy_tmp_${DEPLOY_RUN_ID}" >> $GITHUB_OUTPUT
           
           # Create staging directory
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P ${{ vars.DEPLOY_PORT }} \
+            ssh -P $DEPLOY_PORT \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
+            $DEPLOY_USER@$DEPLOY_HOST \
             "mkdir -p ${STAGING_DIR}" || exit 1
           
           # Upload new site content to staging directory using SCP
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            scp -P ${{ vars.DEPLOY_PORT }} \
+            scp -P $DEPLOY_PORT \
             -r \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             output/* \
-            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${STAGING_DIR}/ || exit 1
+            $DEPLOY_USER@$DEPLOY_HOST:${STAGING_DIR}/ || exit 1
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
 
       - name: Verify vars/secrets are loaded
         run: |
           echo "Checking secrets..."
-          echo "DEPLOY_HOST length: $(echo -n '${{ vars.DEPLOY_HOST }}' | wc -c)"
-          echo "DEPLOY_USER length: $(echo -n '${{ vars.DEPLOY_USER }}' | wc -c)"
-          echo "DEPLOY_PORT length: $(echo -n '${{ vars.DEPLOY_PORT }}' | wc -c)"
-          echo "DEPLOY_PATH length: $(echo -n '${{ vars.DEPLOY_PATH }}' | wc -c)"
+          echo "DEPLOY_HOST=$DEPLOY_HOST (len: ${#DEPLOY_HOST})"
+          echo "DEPLOY_USER=$DEPLOY_USER (len: ${#DEPLOY_USER})"
+          echo "DEPLOY_PORT=$DEPLOY_PORT (len: ${#DEPLOY_PORT})"
+          echo "DEPLOY_PATH=$DEPLOY_PATH (len: ${#DEPLOY_PATH})"
           echo "DEPLOY_SSH_PASSWORD length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
           
-          if [ -z "${{ vars.DEPLOY_PATH }}" ]; then
+          if [ -z "$DEPLOY_PATH" ]; then
             echo "ERROR: DEPLOY_PATH is empty!"
             echo "Make sure environment variables are created in GitHub Environment, and password secret exists"
             exit 1
@@ -127,7 +132,7 @@ jobs:
       - name: Atomic swap via rename
         run: |
           STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
-          DEPLOY_PATH="${{ vars.DEPLOY_PATH }}"
+          DEPLOY_PATH="$DEPLOY_PATH"
           BACKUP_NAME=".backup_$(date +%s)"
           
           echo "Performing atomic rename-swap..."
@@ -137,25 +142,25 @@ jobs:
           
           # Atomic rename: backup old htdocs if exists, then rename staging to htdocs
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P ${{ vars.DEPLOY_PORT }} \
+            ssh -P $DEPLOY_PORT \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
+            $DEPLOY_USER@$DEPLOY_HOST \
             "cd \"$DEPLOY_PATH\" && ([ -d htdocs ] && mv htdocs \"$BACKUP_NAME\" && echo \"✓ Old site backed up to $BACKUP_NAME\" || echo \"No old site to backup\") && mv \"$STAGING_NAME\" htdocs && echo '✓ New site is live' || (echo 'ERROR: Swap failed'; exit 1)"
 
       - name: Cleanup on failure (rollback)
         if: failure()
         run: |
           STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
-          DEPLOY_PATH="${{ vars.DEPLOY_PATH }}"
+          DEPLOY_PATH="$DEPLOY_PATH"
           
           # Remove staging directory if deployment failed
           if [ -n "${STAGING_NAME}" ]; then
             sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-              ssh -P ${{ vars.DEPLOY_PORT }} \
+              ssh -P $DEPLOY_PORT \
               -o StrictHostKeyChecking=no \
               -o UserKnownHostsFile=/dev/null \
-              ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
+              $DEPLOY_USER@$DEPLOY_HOST \
               "rm -rf \"$DEPLOY_PATH/$STAGING_NAME\"" || echo "Could not clean up staging directory"
           fi
           
@@ -166,16 +171,16 @@ jobs:
         run: |
           # Basic smoke test to verify site is accessible
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P ${{ vars.DEPLOY_PORT }} \
+            ssh -P $DEPLOY_PORT \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
-            "test -d '${{ vars.DEPLOY_PATH }}/htdocs/assets' && echo '✓ Deployment verified: assets directory exists'" || \
+            $DEPLOY_USER@$DEPLOY_HOST \
+            "test -d '$DEPLOY_PATH/htdocs/assets' && echo '✓ Deployment verified: assets directory exists'" || \
             (echo "WARNING: Could not verify deployment"; exit 0)
 
       - name: Deployment summary
         if: success()
         run: |
-          echo "✅ Deployment to ${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PATH }}/htdocs completed successfully"
+          echo "✅ Deployment to $DEPLOY_HOST:$DEPLOY_PATH/htdocs completed successfully"
           echo "Run ID: ${{ github.run_id }}"
           echo "Commit: ${{ github.sha }}"
