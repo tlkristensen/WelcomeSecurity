@@ -52,9 +52,9 @@ jobs:
           # GitHub's runner is in a clean environment, so this is safe
           cat > ~/.ssh/config << 'EOF'
           Host deploy
-            HostName ${{ secrets.DEPLOY_HOST }}
-            Port ${{ secrets.DEPLOY_PORT }}
-            User ${{ secrets.DEPLOY_USER }}
+            HostName ${{ vars.DEPLOY_HOST }}
+            Port ${{ vars.DEPLOY_PORT }}
+            User ${{ vars.DEPLOY_USER }}
             StrictHostKeyChecking no
             UserKnownHostsFile=/dev/null
           EOF
@@ -62,19 +62,19 @@ jobs:
 
       - name: Test SCP connection
         run: |
-          echo "Testing SCP connection to ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PORT }}"
+          echo "Testing SCP connection to ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PORT }}"
           
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -v -P ${{ secrets.DEPLOY_PORT }} \
+            ssh -v -P ${{ vars.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
             "echo 'SSH connection successful' && pwd" || {
             echo "✗ SSH connection failed"
             echo "Check:"
-            echo "  - DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}"
-            echo "  - DEPLOY_USER: ${{ secrets.DEPLOY_USER }}"
-            echo "  - DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}"
+            echo "  - DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}"
+            echo "  - DEPLOY_USER: ${{ vars.DEPLOY_USER }}"
+            echo "  - DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}"
             echo "  - Password length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
             exit 1
           }
@@ -84,27 +84,27 @@ jobs:
         id: deploy
         run: |
           DEPLOY_RUN_ID="${{ github.run_id }}"
-          STAGING_DIR="${{ secrets.DEPLOY_PATH }}/.deploy_tmp_${DEPLOY_RUN_ID}"
+          STAGING_DIR="${{ vars.DEPLOY_PATH }}/.deploy_tmp_${DEPLOY_RUN_ID}"
           
           echo "STAGING_DIR=${STAGING_DIR}" >> $GITHUB_OUTPUT
           echo "STAGING_NAME=.deploy_tmp_${DEPLOY_RUN_ID}" >> $GITHUB_OUTPUT
           
           # Create staging directory
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P ${{ secrets.DEPLOY_PORT }} \
+            ssh -P ${{ vars.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
             "mkdir -p ${STAGING_DIR}" || exit 1
           
           # Upload new site content to staging directory using SCP
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            scp -P ${{ secrets.DEPLOY_PORT }} \
+            scp -P ${{ vars.DEPLOY_PORT }} \
             -r \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             output/* \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${STAGING_DIR}/ || exit 1
+            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${STAGING_DIR}/ || exit 1
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
 
