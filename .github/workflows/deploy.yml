@@ -62,14 +62,23 @@ jobs:
 
       - name: Test SCP connection
         run: |
+          echo "Testing SCP connection to ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PORT }}"
+          
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            scp -P ${{ secrets.DEPLOY_PORT }} \
+            ssh -v -P ${{ secrets.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            /etc/hostname \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/.deploy_test_$$ 2>/dev/null && \
-            echo "✓ SCP connection successful" || \
-            (echo "✗ SCP connection failed - check credentials"; exit 1)
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "echo 'SSH connection successful' && pwd" || {
+            echo "✗ SSH connection failed"
+            echo "Check:"
+            echo "  - DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}"
+            echo "  - DEPLOY_USER: ${{ secrets.DEPLOY_USER }}"
+            echo "  - DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}"
+            echo "  - Password length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
+            exit 1
+          }
+          echo "✓ SSH connection successful"
 
       - name: Deploy to staging via SCP
         id: deploy
