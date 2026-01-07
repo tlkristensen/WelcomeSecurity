@@ -2,8 +2,8 @@
 
 This repository contains the source for the **WelcomeSecurity** website (Jekyll) — including content for **WelcomeSecurity** (security as a sidekick to developers) and **Sustira** (ESG & sustainability).
 
-[![Website health check](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/site-health.yml/badge.svg?branch=main)](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/site-health.yml)
-[![Deploy](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/deploy.yml)
+[![Website health check](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/site-health.yml/badge.svg?branch=master)](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/site-health.yml)
+[![Deploy](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/tlkristensen/WelcomeSecurity/actions/workflows/deploy.yml)
 
 ---
 
