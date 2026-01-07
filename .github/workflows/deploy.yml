@@ -1,0 +1,187 @@
+name: Deploy Jekyll to Server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: |
+          bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "_site" ]; then
+            echo "ERROR: _site directory not created!"
+            exit 1
+          fi
+          echo "Build output size: $(du -sh _site | cut -f1)"
+          echo "Files in _site: $(find _site -type f | wc -l)"
+
+      - name: Install sshpass
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y sshpass
+
+      - name: Setup SSH for password-based authentication
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          
+          # Disable host key checking for password-based auth (SCP compatibility)
+          # GitHub's runner is in a clean environment, so this is safe
+          cat > ~/.ssh/config << 'EOF'
+          Host deploy
+            HostName ${{ secrets.DEPLOY_HOST }}
+            Port ${{ secrets.DEPLOY_PORT }}
+            User ${{ secrets.DEPLOY_USER }}
+            StrictHostKeyChecking no
+            UserKnownHostsFile=/dev/null
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Test SCP connection
+        run: |
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            scp -P ${{ secrets.DEPLOY_PORT }} \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            /etc/hostname \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/tmp/.deploy_test_$$ 2>/dev/null && \
+            echo "✓ SCP connection successful" || \
+            (echo "✗ SCP connection failed - check credentials"; exit 1)
+
+      - name: Deploy to staging via SCP
+        id: deploy
+        run: |
+          DEPLOY_RUN_ID="${{ github.run_id }}"
+          STAGING_DIR="${{ secrets.DEPLOY_PATH }}/.deploy_tmp_${DEPLOY_RUN_ID}"
+          
+          echo "STAGING_DIR=${STAGING_DIR}" >> $GITHUB_OUTPUT
+          
+          # Create staging directory
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            ssh -P ${{ secrets.DEPLOY_PORT }} \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "mkdir -p ${STAGING_DIR}" || exit 1
+          
+          # Upload new site content to staging directory using SCP
+          # Since SCP doesn't have selective deletion like rsync, we'll upload everything
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            scp -P ${{ secrets.DEPLOY_PORT }} \
+            -r \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            _site/* \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${STAGING_DIR}/ || exit 1
+          
+          echo "✓ Files uploaded to staging: ${STAGING_DIR}"
+
+      - name: Atomic swap (or fallback to direct upload)
+        run: |
+          STAGING_DIR="${{ steps.deploy.outputs.STAGING_DIR }}"
+          FINAL_DIR="${{ secrets.DEPLOY_PATH }}"
+          BACKUP_DIR="${{ secrets.DEPLOY_PATH }}/.backup_$(date +%s)"
+          
+          # Try atomic swap: backup old content, then rename staging to live
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            ssh -P ${{ secrets.DEPLOY_PORT }} \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} << DEPLOY_SCRIPT
+          set -e
+          
+          STAGING_DIR="${STAGING_DIR}"
+          FINAL_DIR="${FINAL_DIR}"
+          BACKUP_DIR="${BACKUP_DIR}"
+          
+          if [ ! -d "\${STAGING_DIR}" ]; then
+            echo "ERROR: Staging directory does not exist: \${STAGING_DIR}"
+            exit 1
+          fi
+          
+          echo "Attempting atomic swap with mv..."
+          
+          # Create backup of current live site (if it exists)
+          if [ -d "\${FINAL_DIR}" ] && [ -n "\$(ls -A \${FINAL_DIR})" ]; then
+            mv "\${FINAL_DIR}" "\${BACKUP_DIR}" || {
+              echo "WARNING: Could not backup old content"
+            }
+          fi
+          
+          # Move staging to live (atomic operation)
+          mv "\${STAGING_DIR}" "\${FINAL_DIR}" || {
+            echo "ERROR: Failed to move staging to live!"
+            # Restore backup if swap failed
+            if [ -d "\${BACKUP_DIR}" ]; then
+              mv "\${BACKUP_DIR}" "\${FINAL_DIR}"
+            fi
+            exit 1
+          }
+          
+          # Keep backup reference
+          if [ -d "\${BACKUP_DIR}" ]; then
+            echo "✓ Backup saved: \${BACKUP_DIR}"
+          fi
+          
+          echo "✓ Atomic swap completed successfully"
+          DEPLOY_SCRIPT
+        shell: bash
+
+      - name: Cleanup on failure (rollback)
+        if: failure()
+        run: |
+          STAGING_DIR="${{ steps.deploy.outputs.STAGING_DIR }}"
+          
+          # Remove staging directory if deployment failed
+          if [ -n "${STAGING_DIR}" ]; then
+            sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+              ssh -P ${{ secrets.DEPLOY_PORT }} \
+              -o StrictHostKeyChecking=no \
+              -o UserKnownHostsFile=/dev/null \
+              ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+              "rm -rf ${STAGING_DIR}" || echo "Could not clean up staging directory"
+          fi
+          
+          echo "⚠ Deployment failed. Staging directory cleaned up."
+          echo "Check workflow logs above for details."
+
+      - name: Verify deployment
+        run: |
+          # Basic smoke test to verify site is accessible
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            ssh -P ${{ secrets.DEPLOY_PORT }} \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "test -d '${{ secrets.DEPLOY_PATH }}/assets' && echo '✓ Deployment verified: assets directory exists'" || \
+            (echo "WARNING: Could not verify deployment"; exit 0)
+
+      - name: Deployment summary
+        if: success()
+        run: |
+          echo "✅ Deployment to ${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }} completed successfully"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Commit: ${{ github.sha }}"

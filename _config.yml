@@ -1,4 +1,5 @@
-baseurl: '/'
+#baseurl: ''
+baseurl: ""
 permalink: pretty
 title: 'WelcomeSecurity - Security Sidekick til dine udviklere'
 description: >
