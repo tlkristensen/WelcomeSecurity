@@ -120,44 +120,48 @@ jobs:
             ssh -P ${{ secrets.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} << DEPLOY_SCRIPT
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} bash << 'DEPLOY_SCRIPT'
           set -e
           
-          STAGING_DIR="${STAGING_DIR}"
-          FINAL_DIR="${FINAL_DIR}"
-          BACKUP_DIR="${BACKUP_DIR}"
+          STAGING_DIR="$1"
+          FINAL_DIR="$2"
+          BACKUP_DIR="$3"
           
-          if [ ! -d "\${STAGING_DIR}" ]; then
-            echo "ERROR: Staging directory does not exist: \${STAGING_DIR}"
+          if [ ! -d "$STAGING_DIR" ]; then
+            echo "ERROR: Staging directory does not exist: $STAGING_DIR"
             exit 1
           fi
           
           echo "Attempting atomic swap with mv..."
+          echo "  Staging: $STAGING_DIR"
+          echo "  Live: $FINAL_DIR"
+          echo "  Backup: $BACKUP_DIR"
           
           # Create backup of current live site (if it exists)
-          if [ -d "\${FINAL_DIR}" ] && [ -n "\$(ls -A \${FINAL_DIR})" ]; then
-            mv "\${FINAL_DIR}" "\${BACKUP_DIR}" || {
+          if [ -d "$FINAL_DIR" ] && [ -n "$(ls -A $FINAL_DIR)" ]; then
+            mv "$FINAL_DIR" "$BACKUP_DIR" || {
               echo "WARNING: Could not backup old content"
             }
           fi
           
           # Move staging to live (atomic operation)
-          mv "\${STAGING_DIR}" "\${FINAL_DIR}" || {
+          mv "$STAGING_DIR" "$FINAL_DIR" || {
             echo "ERROR: Failed to move staging to live!"
             # Restore backup if swap failed
-            if [ -d "\${BACKUP_DIR}" ]; then
-              mv "\${BACKUP_DIR}" "\${FINAL_DIR}"
+            if [ -d "$BACKUP_DIR" ]; then
+              mv "$BACKUP_DIR" "$FINAL_DIR"
             fi
             exit 1
           }
           
           # Keep backup reference
-          if [ -d "\${BACKUP_DIR}" ]; then
-            echo "✓ Backup saved: \${BACKUP_DIR}"
+          if [ -d "$BACKUP_DIR" ]; then
+            echo "✓ Backup saved: $BACKUP_DIR"
           fi
           
           echo "✓ Atomic swap completed successfully"
           DEPLOY_SCRIPT
+          "$STAGING_DIR" "$FINAL_DIR" "$BACKUP_DIR"
         shell: bash
 
       - name: Cleanup on failure (rollback)
