@@ -1,0 +1,118 @@
+name: Website health check
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # hver nat kl. 03:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write  # For creating issues on failure (optional)
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check site availability and response time
+        id: availability
+        run: |
+          echo "## Site Availability Test" >> $GITHUB_STEP_SUMMARY
+          
+          START=$(date +%s)
+          HTTP_CODE=$(curl -fsSL -w '%{http_code}' -o /tmp/response.html \
+                      --max-time 20 \
+                      https://www.welcomesecurity.net)
+          END=$(date +%s)
+          DURATION=$((END - START))
+          
+          echo "✅ Site is reachable" >> $GITHUB_STEP_SUMMARY
+          echo "- HTTP Status: $HTTP_CODE" >> $GITHUB_STEP_SUMMARY
+          echo "- Response time: ${DURATION}s" >> $GITHUB_STEP_SUMMARY
+          
+          if [ $DURATION -gt 5 ]; then
+            echo "⚠️ Warning: Response time is slow (>${DURATION}s)" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check critical pages
+        id: pages
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Critical Pages Check" >> $GITHUB_STEP_SUMMARY
+          
+          PAGES=(
+            "https://www.welcomesecurity.net/"
+            "https://www.welcomesecurity.net/om-os/"
+            "https://www.welcomesecurity.net/vi-tilbyder/"
+            "https://www.welcomesecurity.net/kontakt/"
+          )
+          
+          FAILED=0
+          for page in "${PAGES[@]}"; do
+            if curl -fsSL --max-time 15 "$page" > /dev/null; then
+              echo "- ✅ $page" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- ❌ $page (FAILED)" >> $GITHUB_STEP_SUMMARY
+              FAILED=1
+            fi
+          done
+          
+          if [ $FAILED -eq 1 ]; then
+            echo "ERROR: Some critical pages failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Check SSL certificate
+        id: ssl
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## SSL Certificate Check" >> $GITHUB_STEP_SUMMARY
+          
+          EXPIRY=$(echo | openssl s_client -servername www.welcomesecurity.net \
+                   -connect www.welcomesecurity.net:443 2>/dev/null \
+                   | openssl x509 -noout -enddate | cut -d= -f2)
+          
+          EXPIRY_EPOCH=$(date -d "$EXPIRY" +%s)
+          NOW_EPOCH=$(date +%s)
+          DAYS_LEFT=$(( ($EXPIRY_EPOCH - $NOW_EPOCH) / 86400 ))
+          
+          echo "- Certificate expires: $EXPIRY" >> $GITHUB_STEP_SUMMARY
+          echo "- Days remaining: $DAYS_LEFT" >> $GITHUB_STEP_SUMMARY
+          
+          if [ $DAYS_LEFT -lt 30 ]; then
+            echo "⚠️ WARNING: Certificate expires in less than 30 days!" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ Certificate is valid" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Link check (internal & external)
+        id: links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: >
+            --verbose
+            --no-progress
+            --timeout 20
+            --max-redirects 5
+            --accept 200,204,301,302
+            https://www.welcomesecurity.net
+          output: lychee-report.md
+          fail: true
+
+      - name: Upload link check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-report
+          path: lychee-report.md
+          retention-days: 30
+
+      - name: Final summary
+        if: always()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "**Check completed at:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 [View full link check report in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY

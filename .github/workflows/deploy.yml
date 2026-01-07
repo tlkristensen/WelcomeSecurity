@@ -18,6 +18,9 @@ jobs:
       DEPLOY_USER: ${{ vars.DEPLOY_USER }}
       DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}
       DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+      SSH_OPTS: -P ${{ vars.DEPLOY_PORT }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+      SSH_DEST: ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}
+      SCP_OPTS: -P ${{ vars.DEPLOY_PORT }} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
     
     steps:
       - name: Checkout code
@@ -69,21 +72,18 @@ jobs:
       - name: Test SCP connection
         run: |
           echo "Testing SCP connection to $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PORT"
-          
+
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -v -P $DEPLOY_PORT \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            $DEPLOY_USER@$DEPLOY_HOST \
+            ssh -v $SSH_OPTS "$SSH_DEST" \
             "echo 'SSH connection successful' && pwd" || {
-            echo "✗ SSH connection failed"
-            echo "Check:"
-            echo "  - DEPLOY_HOST: $DEPLOY_HOST"
-            echo "  - DEPLOY_USER: $DEPLOY_USER"
-            echo "  - DEPLOY_PORT: $DEPLOY_PORT"
-            echo "  - Password length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
-            exit 1
-          }
+              echo "✗ SSH connection failed"
+              echo "Check:"
+              echo "  - DEPLOY_HOST: $DEPLOY_HOST"
+              echo "  - DEPLOY_USER: $DEPLOY_USER"
+              echo "  - DEPLOY_PORT: $DEPLOY_PORT"
+              echo "  - Password length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
+              exit 1
+            }
           echo "✓ SSH connection successful"
 
       - name: Deploy to staging via SCP
@@ -97,22 +97,21 @@ jobs:
           
           # Create staging directory
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P $DEPLOY_PORT \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            $DEPLOY_USER@$DEPLOY_HOST \
+            ssh $SSH_OPTS "$SSH_DEST" \
             "mkdir -p ${STAGING_DIR}" || exit 1
           
           # Upload new site content to staging directory using SCP
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            scp -P $DEPLOY_PORT \
-            -r \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            output/* \
-            $DEPLOY_USER@$DEPLOY_HOST:${STAGING_DIR}/ || exit 1
+            scp $SCP_OPTS -r \
+            output/* "$SSH_DEST:${STAGING_DIR}/" || exit 1
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
+
+      - name: Purge old backups
+        run: |
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            ssh $SSH_OPTS "$SSH_DEST" \
+            "cd '$DEPLOY_PATH' && rm -rfv .backup_* 2>/dev/null || echo 'No previous backups to remove'"
 
       - name: Atomic swap via rename
         id: swap
@@ -126,23 +125,38 @@ jobs:
           echo "  From: $STAGING_NAME"
           echo "  To: htdocs"
           echo "  Backup: $BACKUP_NAME (if old site exists)"
-          
-          # Atomic rename: backup old htdocs if exists, then rename staging to htdocs
-          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P $DEPLOY_PORT \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            $DEPLOY_USER@$DEPLOY_HOST \
-            "cd \"$DEPLOY_PATH\" && ([ -d htdocs ] && mv htdocs \"$BACKUP_NAME\" && echo \"✓ Old site backed up to $BACKUP_NAME\" || echo \"No old site to backup\") && mv \"$STAGING_NAME\" htdocs && echo '✓ New site is live' || (echo 'ERROR: Swap failed'; exit 1)"
 
-      - name: Verify deployment
+          # Atomic rename: back up current, promote staging
+          sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
+            ssh $SSH_OPTS "$SSH_DEST" "bash -s" <<EOF
+          set -e
+          cd "$DEPLOY_PATH"
+
+          if [ -d htdocs ]; then
+            mv htdocs "$BACKUP_NAME"
+            echo "✓ Old site backed up to $BACKUP_NAME"
+          else
+            echo "No old site to backup"
+          fi
+
+          mv "$STAGING_NAME" htdocs
+          echo "✓ New site is live"
+          EOF
+
+      - name: Verify deployment from build agent
         run: |
           # Give the web server a moment to pick up the new files
           sleep 2
-          # Fail if the site doesn't respond with a successful HTTP status
-          curl -f --connect-timeout 5 --max-time 15 -s -o /dev/null -w '%{http_code}' http://$DEPLOY_HOST/index.html \
+
+          # Test from build agent (not via SSH) - fail if the site doesn't respond
+          curl -f \
+               --connect-timeout 5 \
+               --max-time 15 \
+               -s -o /dev/null \
+               -w '%{http_code}' \
+               "https://$DEPLOY_HOST/index.html" \
             && echo '✓ Site is responding' \
-            || (echo 'ERROR: Site verification failed'; exit 1)
+            || { echo 'ERROR: Site verification failed'; exit 1; }
 
       - name: Cleanup on failure (rollback)
         if: failure()
@@ -153,22 +167,23 @@ jobs:
 
           echo "⚠ Deployment failed. Attempting rollback..."
 
-          # On failure, attempt to restore the previous site from backup
+          # Restore previous site from backup and tidy up staging
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P $DEPLOY_PORT \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            $DEPLOY_USER@$DEPLOY_HOST \
-            "set -e; cd \"$DEPLOY_PATH\"; \
-             if [ -d \"$BACKUP_NAME\" ]; then \
-               echo 'Rolling back to previous site...'; \
-               [ -d htdocs ] && mv htdocs .failed_${{ github.run_id }} || true; \
-               mv \"$BACKUP_NAME\" htdocs && echo '✓ Rolled back to previous site'; \
-             else \
-               echo 'No backup found to rollback.'; \
-             fi; \
-             # Clean up any leftover staging dir if it still exists
-             [ -n \"$STAGING_NAME\" ] && [ -d \"$STAGING_NAME\" ] && rm -rf \"$STAGING_NAME\" || true"
+            ssh $SSH_OPTS "$SSH_DEST" "bash -s" <<EOF
+          set -e
+          cd "$DEPLOY_PATH"
+
+          if [ -d "$BACKUP_NAME" ]; then
+            echo 'Rolling back to previous site...'
+            [ -d htdocs ] && mv htdocs .failed_${{ github.run_id }} || true
+            mv "$BACKUP_NAME" htdocs
+            echo '✓ Rolled back to previous site'
+          else
+            echo 'No backup found to rollback.'
+          fi
+
+          [ -n "$STAGING_NAME" ] && [ -d "$STAGING_NAME" ] && rm -rf "$STAGING_NAME" || true
+          EOF
 
           echo "Rollback step completed. Check logs for details."
 
