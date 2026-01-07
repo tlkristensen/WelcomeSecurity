@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   build-and-deploy:
+    environment: production
     runs-on: ubuntu-latest
     
     steps:
@@ -50,7 +51,7 @@ jobs:
           
           # Disable host key checking for password-based auth (SCP compatibility)
           # GitHub's runner is in a clean environment, so this is safe
-          cat > ~/.ssh/config << 'EOF'
+          cat > ~/.ssh/config << EOF
           Host deploy
             HostName ${{ vars.DEPLOY_HOST }}
             Port ${{ vars.DEPLOY_PORT }}
