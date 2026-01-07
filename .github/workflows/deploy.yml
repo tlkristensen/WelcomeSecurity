@@ -31,12 +31,12 @@ jobs:
 
       - name: Verify build output
         run: |
-          if [ ! -d "_site" ]; then
-            echo "ERROR: _site directory not created!"
+          if [ ! -d "output" ]; then
+            echo "ERROR: output directory not created!"
             exit 1
           fi
-          echo "Build output size: $(du -sh _site | cut -f1)"
-          echo "Files in _site: $(find _site -type f | wc -l)"
+          echo "Build output size: $(du -sh output | cut -f1)"
+          echo "Files in output: $(find output -type f | wc -l)"
 
       - name: Install sshpass
         run: |
@@ -94,7 +94,7 @@ jobs:
             -r \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            _site/* \
+            output/* \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${STAGING_DIR}/ || exit 1
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
