@@ -108,25 +108,25 @@ jobs:
           
           echo "✓ Files uploaded to staging: ${STAGING_DIR}"
 
-      - name: Verify secrets are loaded
+      - name: Verify vars/secrets are loaded
         run: |
           echo "Checking secrets..."
-          echo "DEPLOY_HOST length: $(echo -n '${{ secrets.DEPLOY_HOST }}' | wc -c)"
-          echo "DEPLOY_USER length: $(echo -n '${{ secrets.DEPLOY_USER }}' | wc -c)"
-          echo "DEPLOY_PORT length: $(echo -n '${{ secrets.DEPLOY_PORT }}' | wc -c)"
-          echo "DEPLOY_PATH length: $(echo -n '${{ secrets.DEPLOY_PATH }}' | wc -c)"
+          echo "DEPLOY_HOST length: $(echo -n '${{ vars.DEPLOY_HOST }}' | wc -c)"
+          echo "DEPLOY_USER length: $(echo -n '${{ vars.DEPLOY_USER }}' | wc -c)"
+          echo "DEPLOY_PORT length: $(echo -n '${{ vars.DEPLOY_PORT }}' | wc -c)"
+          echo "DEPLOY_PATH length: $(echo -n '${{ vars.DEPLOY_PATH }}' | wc -c)"
           echo "DEPLOY_SSH_PASSWORD length: $(echo -n '${{ secrets.DEPLOY_SSH_PASSWORD }}' | wc -c)"
           
-          if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
+          if [ -z "${{ vars.DEPLOY_PATH }}" ]; then
             echo "ERROR: DEPLOY_PATH is empty!"
-            echo "Make sure all 5 secrets are created in GitHub: Settings > Secrets"
+            echo "Make sure environment variables are created in GitHub Environment, and password secret exists"
             exit 1
           fi
 
       - name: Atomic swap via rename
         run: |
           STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
-          DEPLOY_PATH="${{ secrets.DEPLOY_PATH }}"
+          DEPLOY_PATH="${{ vars.DEPLOY_PATH }}"
           BACKUP_NAME=".backup_$(date +%s)"
           
           echo "Performing atomic rename-swap..."
@@ -136,25 +136,25 @@ jobs:
           
           # Atomic rename: backup old htdocs if exists, then rename staging to htdocs
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P ${{ secrets.DEPLOY_PORT }} \
+            ssh -P ${{ vars.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
             "cd \"$DEPLOY_PATH\" && ([ -d htdocs ] && mv htdocs \"$BACKUP_NAME\" && echo \"✓ Old site backed up to $BACKUP_NAME\" || echo \"No old site to backup\") && mv \"$STAGING_NAME\" htdocs && echo '✓ New site is live' || (echo 'ERROR: Swap failed'; exit 1)"
 
       - name: Cleanup on failure (rollback)
         if: failure()
         run: |
           STAGING_NAME="${{ steps.deploy.outputs.STAGING_NAME }}"
-          DEPLOY_PATH="${{ secrets.DEPLOY_PATH }}"
+          DEPLOY_PATH="${{ vars.DEPLOY_PATH }}"
           
           # Remove staging directory if deployment failed
           if [ -n "${STAGING_NAME}" ]; then
             sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-              ssh -P ${{ secrets.DEPLOY_PORT }} \
+              ssh -P ${{ vars.DEPLOY_PORT }} \
               -o StrictHostKeyChecking=no \
               -o UserKnownHostsFile=/dev/null \
-              ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+              ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
               "rm -rf \"$DEPLOY_PATH/$STAGING_NAME\"" || echo "Could not clean up staging directory"
           fi
           
@@ -165,16 +165,16 @@ jobs:
         run: |
           # Basic smoke test to verify site is accessible
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
-            ssh -P ${{ secrets.DEPLOY_PORT }} \
+            ssh -P ${{ vars.DEPLOY_PORT }} \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
-            "test -d '${{ secrets.DEPLOY_PATH }}/htdocs/assets' && echo '✓ Deployment verified: assets directory exists'" || \
+            ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} \
+            "test -d '${{ vars.DEPLOY_PATH }}/htdocs/assets' && echo '✓ Deployment verified: assets directory exists'" || \
             (echo "WARNING: Could not verify deployment"; exit 0)
 
       - name: Deployment summary
         if: success()
         run: |
-          echo "✅ Deployment to ${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/htdocs completed successfully"
+          echo "✅ Deployment to ${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PATH }}/htdocs completed successfully"
           echo "Run ID: ${{ github.run_id }}"
           echo "Commit: ${{ github.sha }}"
