@@ -96,6 +96,20 @@ jobs:
           output: lychee-report.md
           fail: true
 
+      - name: Locate failing links in build
+        if: always()
+        run: |
+          if [ ! -f lychee-report.md ] || [ ! -d output ]; then
+            echo "No lychee report or build output present; skipping source lookup.";
+            exit 0;
+          fi
+
+          echo "Broken links and where they appear (searching ./output):"
+          grep -oP '\[\d{3}\]\s+\Khttps?://\S+' lychee-report.md | while read -r url; do
+            echo "\n=== $url ==="
+            rg -n "$url" output || echo "Not found in built output"
+          done
+
       - name: Upload link check report
         if: always()
         uses: actions/upload-artifact@v4
