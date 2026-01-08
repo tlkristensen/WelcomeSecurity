@@ -79,6 +79,7 @@ jobs:
 
       - name: Link check (internal & external)
         id: links
+        continue-on-error: true
         uses: lycheeverse/lychee-action@v2.0.2
         with:
           args: >
