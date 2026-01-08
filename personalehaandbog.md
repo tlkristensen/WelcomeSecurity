@@ -121,8 +121,3 @@ Ledelsen forpligter sig til at lytte, tage henvendelser alvorligt og følge op i
 
 Ledelsen har ansvar for at sikre en åben, tryg og respektfuld dialog.
 
----
-
-### Accept
-
-Medarbejderen bekræfter at have læst og accepteret personalhåndbogen.
