@@ -99,30 +99,33 @@ jobs:
       - name: Locate failing links in build
         if: always()
         run: |
-          if [ ! -f lychee-report.md ] || [ ! -d output ]; then
-            echo "No lychee report or build output present; skipping source lookup." >> $GITHUB_STEP_SUMMARY
-            exit 0
-          fi
-
           echo "## Broken links (source files)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          FOUND=0
-          grep -oP '\[\d{3}\]\s+\Khttps?://\S+' lychee-report.md | while read -r url; do
-            echo "### $url" >> $GITHUB_STEP_SUMMARY
-            HIT=$(rg -n "$url" output)
-            if [ -n "$HIT" ]; then
-              FOUND=1
-              echo "$HIT" | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+          if [ ! -f lychee-report.md ] || [ ! -d output ]; then
+            echo "No lychee report or build output found." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          # Extract failed URLs from lychee report
+          BROKEN_URLS=$(grep -oP '\[\d{3}\]\s+\K\S+' lychee-report.md | sort -u)
+
+          if [ -z "$BROKEN_URLS" ]; then
+            echo "No broken links found in report." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          while IFS= read -r url; do
+            echo "### \`$url\`" >> $GITHUB_STEP_SUMMARY
+            # Search for this URL in all built files
+            RESULTS=$(rg -F "$url" output --color never 2>/dev/null | head -5)
+            if [ -n "$RESULTS" ]; then
+              echo "$RESULTS" | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
             else
-              echo "- Source file not found in build output" >> $GITHUB_STEP_SUMMARY
+              echo "- Not found in source files" >> $GITHUB_STEP_SUMMARY
             fi
             echo "" >> $GITHUB_STEP_SUMMARY
-          done
-
-          if [ $FOUND -eq 0 ]; then
-            echo "No broken links were located in built files." >> $GITHUB_STEP_SUMMARY
-          fi
+          done <<< "$BROKEN_URLS"
 
       - name: Final summary
         if: always()
