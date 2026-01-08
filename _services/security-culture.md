@@ -3,6 +3,7 @@ title: "Kultur & Awareness – Skab forståelse, ansvar og adfærd"
 weight: 3
 description: "Øjenåbnende demoer, undervisning og præsentationer der ændrer adfærd og styrker sikkerhedskulturen i teams, organisationer og ledelse."
 banner_image: "/images/illustrations/start-here.webp"
+permalink: "/vi-tilbyder/kultur-og-awareness/"
 ---
 
 ## Sikkerhed starter med mennesker – ikke teknologien

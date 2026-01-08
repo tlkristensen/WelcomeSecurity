@@ -3,6 +3,7 @@ title: "Secure Tooling & SDLC – Reelt indblik i jeres sikkerhedsniveau"
 weight: 5
 description: "Få styr på sikkerhedsværktøjer, pipelines og processer – og få ægte, brugbar og faktuel viden om sikkerheden i jeres kode og udviklingsflow."
 banner_image: "/images/illustrations/clear-path.webp"
+permalink: "/vi-tilbyder/secure-tooling-sdlc/"
 ---
 
 ## Få reelt indblik i jeres sikkerhed – ikke bare flere værktøjer

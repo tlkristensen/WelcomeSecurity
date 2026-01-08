@@ -3,6 +3,7 @@ title: "... og alt det andet Cybersecurity"
 weight: 6
 banner_image: "/images/illustrations/alt-det-andet.webp"
 description: "Supplerende rådgivning inden for klassisk cybersecurity – når I har brug for overblik, prioritering og sammenhæng med jeres udvikling og forretning."
+permalink: "/vi-tilbyder/cybersecurity-raadgivning/"
 ---
 
 ## Når I har brug for overblik – også uden for koden

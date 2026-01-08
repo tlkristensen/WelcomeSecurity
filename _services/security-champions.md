@@ -3,6 +3,7 @@ title: "Security Champions"
 weight: 2
 description: "Opbyg et stærkt og levedygtigt Security Champions-program, der løfter sikkerheden i udviklingsteams og gør dem selvkørende i hverdagen."
 banner_image: "/images/illustrations/fish-jumping.webp"
+permalink: "/vi-tilbyder/security-champions/"
 ---
 
 # Giv jeres udviklingsteams deres egne sikkerheds-sidekicks til jeres superhelte

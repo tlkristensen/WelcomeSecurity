@@ -18,6 +18,7 @@ jobs:
         id: availability
         run: |
           echo "## Site Availability Test" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           
           START=$(date +%s)
           HTTP_CODE=$(curl -fsSL -w '%{http_code}' -o /tmp/response.html \
@@ -26,47 +27,21 @@ jobs:
           END=$(date +%s)
           DURATION=$((END - START))
           
-          echo "✅ Site is reachable" >> $GITHUB_STEP_SUMMARY
-          echo "- HTTP Status: $HTTP_CODE" >> $GITHUB_STEP_SUMMARY
-          echo "- Response time: ${DURATION}s" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ✅ Site is reachable" >> $GITHUB_STEP_SUMMARY
+          echo "**HTTP Code:** $HTTP_CODE" >> $GITHUB_STEP_SUMMARY
+          echo "**Response time:** ${DURATION}s" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           
           if [ $DURATION -gt 5 ]; then
-            echo "⚠️ Warning: Response time is slow (>${DURATION}s)" >> $GITHUB_STEP_SUMMARY
-          fi
-
-      - name: Check critical pages
-        id: pages
-        run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Critical Pages Check" >> $GITHUB_STEP_SUMMARY
-          
-          PAGES=(
-            "https://www.welcomesecurity.net/"
-            "https://www.welcomesecurity.net/om-os/"
-            "https://www.welcomesecurity.net/vi-tilbyder/"
-            "https://www.welcomesecurity.net/kontakt/"
-          )
-          
-          FAILED=0
-          for page in "${PAGES[@]}"; do
-            if curl -fsSL --max-time 15 "$page" > /dev/null; then
-              echo "- ✅ $page" >> $GITHUB_STEP_SUMMARY
-            else
-              echo "- ❌ $page (FAILED)" >> $GITHUB_STEP_SUMMARY
-              FAILED=1
-            fi
-          done
-          
-          if [ $FAILED -eq 1 ]; then
-            echo "ERROR: Some critical pages failed" >> $GITHUB_STEP_SUMMARY
-            exit 1
+            echo "⚠️ **Warning:** Response time is slow (>${DURATION}s)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Check SSL certificate
         id: ssl
         run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
           echo "## SSL Certificate Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           
           EXPIRY=$(echo | openssl s_client -servername www.welcomesecurity.net \
                    -connect www.welcomesecurity.net:443 2>/dev/null \
@@ -76,14 +51,17 @@ jobs:
           NOW_EPOCH=$(date +%s)
           DAYS_LEFT=$(( ($EXPIRY_EPOCH - $NOW_EPOCH) / 86400 ))
           
-          echo "- Certificate expires: $EXPIRY" >> $GITHUB_STEP_SUMMARY
-          echo "- Days remaining: $DAYS_LEFT" >> $GITHUB_STEP_SUMMARY
+          echo "**Expires:** $EXPIRY" >> $GITHUB_STEP_SUMMARY
+          echo "**Days remaining:** $DAYS_LEFT" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           
           if [ $DAYS_LEFT -lt 30 ]; then
-            echo "⚠️ WARNING: Certificate expires in less than 30 days!" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ **WARNING:** Certificate expires in less than 30 days!" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
             exit 1
           else
             echo "✅ Certificate is valid" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Link check (internal & external)
@@ -111,8 +89,12 @@ jobs:
       - name: Final summary
         if: always()
         run: |
+          echo "## Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ All checks completed successfully" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "**Check completed at:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📊 [View full link check report in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 [View link check report in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY

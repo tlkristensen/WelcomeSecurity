@@ -5,6 +5,7 @@ description: "Få en fast Security Sidekick, der arbejder tæt sammen med jeres 
 intro_image_absolute: false
 intro_image_hide_on_mobile: false
 banner_image: "/images/illustrations/superhelt.webp"
+permalink: "/vi-tilbyder/security-sidekick/"
 ---
 
 Udviklerne er superheltene i jeres organisation.  De bygger de løsninger, som dine kunder, dine medarbejdere, din virksomhed og **vores** samfundet er afhængige af hver eneste dag.
