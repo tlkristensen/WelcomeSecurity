@@ -6,7 +6,7 @@ main:
     url: "/superhelte/"
     weight: 3
   - name: "Holdet"
-    url: "/team/"
+    url: "/holdet/"
     weight: 4
   - name: "Os"
     url: "/om-os/"
@@ -20,7 +20,7 @@ footer:
     url: "/superhelte/"
     weight: 3
   - name: "Holdet"
-    url: "/team/"
+    url: "/holdet/"
     weight: 4
   - name: "Os"
     url: "/om-os/"
