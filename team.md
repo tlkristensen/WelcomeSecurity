@@ -2,7 +2,7 @@
 title: Team
 layout: teams
 description: "Mød teamet bag WelcomeSecurity – Security Sidekick til udviklere og Sustira til bæredygtighed og ESG."
-permalink: "/os/"
+permalink: "/holdet/"
 intro_image_absolute: false
 intro_image_hide_on_mobile: true
 intro_image: "images/team/teamet.webp"
