@@ -117,12 +117,13 @@ jobs:
 
           while IFS= read -r url; do
             echo "### \`$url\`" >> $GITHUB_STEP_SUMMARY
-            # Search for this URL in all built files
-            RESULTS=$(rg -F "$url" output --color never 2>/dev/null | head -5)
+            # Search for this URL in all built HTML files
+            RESULTS=$(rg -F "$url" output --type html --color never 2>/dev/null)
             if [ -n "$RESULTS" ]; then
+              echo "**Found in:**" >> $GITHUB_STEP_SUMMARY
               echo "$RESULTS" | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
             else
-              echo "- Not found in source files" >> $GITHUB_STEP_SUMMARY
+              echo "- Not found in built files" >> $GITHUB_STEP_SUMMARY
             fi
             echo "" >> $GITHUB_STEP_SUMMARY
           done <<< "$BROKEN_URLS"
