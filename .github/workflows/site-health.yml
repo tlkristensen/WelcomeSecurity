@@ -79,7 +79,6 @@ jobs:
 
       - name: Link check (internal & external)
         id: links
-        continue-on-error: true
         uses: lycheeverse/lychee-action@v2.0.2
         with:
           args: >
@@ -101,33 +100,33 @@ jobs:
         if: always()
         run: |
           if [ ! -f lychee-report.md ] || [ ! -d output ]; then
-            echo "No lychee report or build output present; skipping source lookup.";
-            exit 0;
+            echo "No lychee report or build output present; skipping source lookup." >> $GITHUB_STEP_SUMMARY
+            exit 0
           fi
 
-          echo "Broken links and where they appear (searching ./output):"
+          echo "## Broken links (source files)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          FOUND=0
           grep -oP '\[\d{3}\]\s+\Khttps?://\S+' lychee-report.md | while read -r url; do
-            echo "\n=== $url ==="
-            rg -n "$url" output || echo "Not found in built output"
+            echo "### $url" >> $GITHUB_STEP_SUMMARY
+            HIT=$(rg -n "$url" output)
+            if [ -n "$HIT" ]; then
+              FOUND=1
+              echo "$HIT" | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- Source file not found in build output" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "" >> $GITHUB_STEP_SUMMARY
           done
 
-      - name: Upload link check report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: link-check-report
-          path: lychee-report.md
-          retention-days: 30
+          if [ $FOUND -eq 0 ]; then
+            echo "No broken links were located in built files." >> $GITHUB_STEP_SUMMARY
+          fi
 
       - name: Final summary
         if: always()
         run: |
           echo "## Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ All checks completed successfully" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Timestamp:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📊 [View link check report in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
+          echo "Run finished at $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
