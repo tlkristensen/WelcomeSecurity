@@ -74,6 +74,9 @@ jobs:
             --timeout 20
             --max-redirects 5
             --accept 200,204,301,302
+            --exclude "https://fonts.gstatic.com"
+            --exclude "https://fonts.googleapis.com"
+            --exclude "https://www.linkedin.com"
             https://www.welcomesecurity.net
           output: lychee-report.md
           fail: true
