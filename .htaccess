@@ -1,0 +1,30 @@
+# Security Headers for WelcomeSecurity.net
+# These headers improve security posture and should be enabled on Apache
+
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Prevent clickjacking
+    Header set X-Frame-Options "DENY"
+
+    # Control referrer information
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy
+    # Allows self, Google Fonts, and inline styles (required for Jekyll)
+    Header set Content-Security-Policy "default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; script-src 'self'"
+
+    # Permissions Policy (formerly Feature-Policy)
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+    # Force HTTPS (HSTS) - 1 year
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Redirect non-www to www
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^welcomesecurity\.net$ [NC]
+    RewriteRule ^(.*)$ https://www.welcomesecurity.net/$1 [R=301,L]
+</IfModule>

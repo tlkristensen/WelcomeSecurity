@@ -58,8 +58,13 @@ highlighter: rouge
 markdown: kramdown
 
 # SEO settings
-url: "https://welcomesecurity.net" # Update when deployed
+url: "https://www.welcomesecurity.net"
 lang: da-DK
+
+# Explicitly include dotfiles for security headers and well-known
+include:
+  - .htaccess
+  - .well-known
 
 exclude:
   - Gemfile
