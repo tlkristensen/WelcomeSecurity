@@ -101,6 +101,8 @@ jobs:
             "mkdir -p ${STAGING_DIR}" || exit 1
           
           # Upload new site content to staging directory using SCP
+          # Enable dotglob to include hidden files like .htaccess and .well-known/
+          shopt -s dotglob
           sshpass -p "${{ secrets.DEPLOY_SSH_PASSWORD }}" \
             scp $SCP_OPTS -r \
             output/* "$SSH_DEST:${STAGING_DIR}/" || exit 1
