@@ -102,7 +102,7 @@ $sub-footer-text-color: rgba($white, 0.9);
 @import "components/strip";
 @import "components/feature";
 @import "components/social";
-// @import "components/fonts"; // Uncomment this line to self host font
+@import "components/fonts"; // Self-hosted font for better performance and privacy
 
 // Pages
 @import "pages/page-home";
