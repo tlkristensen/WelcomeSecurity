@@ -1,8 +1,8 @@
 ---
 ---
 
-// Colors
-$ws-green: #65b22e;
+// Colors - #4a8521 passes WCAG AA contrast (4.5:1) while staying green
+$ws-green: #4a8521;
 $ws-gray: #575756;
 $primary: $ws-green;
 $primary-dark: #1e3a8a; // Security blue for dark variant
