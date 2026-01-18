@@ -1,0 +1,42 @@
+# WelcomeSecurity
+
+> Danish application security consultancy based in Silkeborg, Denmark. We help developers and DevOps teams build secure software through hands-on collaboration, not just reports. Founded by Thomas L. Kristensen.
+
+## What We Do
+
+WelcomeSecurity acts as a "Security Sidekick" - an integrated, developer-friendly AppSec partner that works alongside development teams in their daily work. We participate in stand-ups, code reviews, architecture discussions, and help developers make better security decisions without slowing them down.
+
+## Core Services
+
+- **Security Sidekick**: Ongoing, flexible application security partnership embedded in your development process
+- **Security Champions Program**: Build and train internal security advocates in your development teams
+- **Secure Development Training**: From 2-hour demos to 10 ECTS university modules (IDA Learning, EADania, SmartLearning)
+- **Threat Modeling & Risk Assessment**: Practical security analysis for features, services, and architectures
+- **Compliance Support**: IEC 62443, ISO 27001, GDPR - implemented in practice, not just on paper
+
+## Industries
+
+Critical infrastructure, energy, finance, cloud/SaaS, manufacturing, maritime, public sector.
+
+## Location
+
+Silkeborg, Denmark. Works with clients throughout Denmark.
+
+## Community
+
+Active in OWASP Aarhus, BSides Aarhus, DevOps Meetup Aarhus, .NET Meetup Aarhus, AWS Meetup Aarhus.
+
+## Key Pages
+
+- [About WelcomeSecurity](https://www.welcomesecurity.net/om-os/): Mission, values, and principles
+- [Security Sidekick Service](https://www.welcomesecurity.net/vi-tilbyder/security-sidekick/): Our core offering
+- [Security Champions](https://www.welcomesecurity.net/vi-tilbyder/security-champions/): Building internal security capability
+- [Training](https://www.welcomesecurity.net/vi-tilbyder/undervisning/): Courses and workshops
+- [References](https://www.welcomesecurity.net/superhelte/): Case studies and experience
+- [Contact](https://www.welcomesecurity.net/kontakt/): Book a conversation
+- [FAQ](https://www.welcomesecurity.net/faq/): Frequently asked questions
+
+## Contact
+
+- Website: https://www.welcomesecurity.net
+- Email: thomas@welcomesecurity.net
