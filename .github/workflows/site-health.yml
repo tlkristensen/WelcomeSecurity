@@ -91,6 +91,7 @@ jobs:
             --exclude "https://fonts.googleapis.com"
             --exclude "https://www.linkedin.com"
             --exclude "http://www.w3.org/"
+            --exclude "http://www.sitemaps.org/"
             ./output/
             https://www.welcomesecurity.net/sitemap.xml
             https://www.welcomesecurity.net
