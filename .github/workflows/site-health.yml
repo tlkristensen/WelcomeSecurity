@@ -90,6 +90,7 @@ jobs:
             --exclude "https://fonts.gstatic.com"
             --exclude "https://fonts.googleapis.com"
             --exclude "https://www.linkedin.com"
+            --exclude "http://www.w3.org/"
             ./output/
             https://www.welcomesecurity.net/sitemap.xml
             https://www.welcomesecurity.net
