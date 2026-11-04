@@ -1,25 +1,31 @@
 Contact: mailto:info@welcomesecurity.net
-Expires: 2027-01-15T00:00:00.000Z
+Expires: 2027-11-04T00:00:00.000Z
 Preferred-Languages: da, en
 Canonical: https://www.welcomesecurity.net/.well-known/security.txt
-
+ 
 # Security Policy
-
+ 
 WelcomeSecurity takes security seriously. We appreciate the security research community
 and welcome responsible disclosure of vulnerabilities.
-
+  
 ## Reporting Guidelines
-
+ 
 1. Email security reports to info@welcomesecurity.net
-2. Include detailed information about the vulnerability
-3. Allow reasonable time for us to respond and fix issues
+2. Include the affected asset, steps to reproduce, and the security impact
+3. Allow reasonable time for us to respond and fix issues before any public disclosure
 4. Do not access or modify user data
 5. Do not perform denial of service attacks
-
+ 
+## Rewards
+ 
+This is a disclosure-only policy. WelcomeSecurity does not offer monetary rewards
+for vulnerability reports. With your permission, we are happy to credit researchers
+publicly for valid findings.
+ 
 ## Response Timeline
-
+ 
 - We will acknowledge receipt within 24 hours
 - Initial assessment within 72 hours
 - Resolution timeline depends on severity and complexity
-
+ 
 Thank you for helping keep WelcomeSecurity and our clients secure!
