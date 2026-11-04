@@ -1,5 +1,5 @@
 .content {
-  a {
+  a:not(.button) {
     text-decoration: underline;
   }
   img {

@@ -48,10 +48,12 @@
     background-color: #ffffff;
     color: #65b22e;
     border-color: #ffffff;
+    text-decoration: none;
     &:hover {
       background-color: darken(#ffffff, 3%);
       color: darken(#65b22e, 10%);
       border-color: darken(#ffffff, 3%);
+      text-decoration: none;
     }
   }
   strong {
